@@ -55,15 +55,6 @@ export default function LandingPage() {
                 </div>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="flex flex-col items-start gap-3">
-                <Link
-                  href="/assess"
-                  className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
-                >
-                  Start Your Free Assessment <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
-                </Link>
-              </motion.div>
-
               <motion.div variants={fadeUp} className="mt-6">
                 <div className="flex gap-3 overflow-x-auto pb-2 -mx-6 px-6 snap-x snap-mandatory">
                   {Object.values(calculators).map((calc) => (
@@ -79,6 +70,14 @@ export default function LandingPage() {
                       <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed">{calc.tagline}</p>
                     </Link>
                   ))}
+                </div>
+                <div className="flex justify-start mt-4">
+                  <Link
+                    href="/assess"
+                    className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
+                  >
+                    Start Your Free Assessment <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
+                  </Link>
                 </div>
               </motion.div>
             </motion.div>
