@@ -16,7 +16,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 flex flex-col">
-        <section className="relative min-h-screen flex flex-col justify-center pt-16 pb-8">
+        <section className="relative min-h-screen flex flex-col md:justify-center pt-16 pb-8">
           <GridBg />
           <div className="relative z-10 max-w-6xl mx-auto w-full px-6 grid md:grid-cols-2 gap-10 items-center">
             <motion.div
