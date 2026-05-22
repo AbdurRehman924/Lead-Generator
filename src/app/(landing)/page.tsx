@@ -16,7 +16,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 flex flex-col">
-        <section className="relative flex-1 flex flex-col justify-center py-20">
+        <section className="relative min-h-screen flex flex-col justify-center pt-16 pb-8">
           <GridBg />
           <div className="relative z-10 max-w-6xl mx-auto w-full px-6 grid md:grid-cols-2 gap-10 items-center">
             <motion.div
@@ -32,7 +32,7 @@ export default function LandingPage() {
                 Score your infrastructure<br />
                 <span className="text-blue-600 dark:text-blue-400">in 2 minutes.</span>
               </motion.h1>
-              <motion.p variants={fadeUp} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed max-w-lg mb-6 font-medium">
+              <motion.p variants={fadeUp} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed max-w-lg mb-5 font-medium">
                 Answer 7 quick questions about your cloud, app, or deployment pipeline.
                 Get a scored report with a letter grade, category breakdown, and actionable fixes.
               </motion.p>
@@ -59,7 +59,7 @@ export default function LandingPage() {
                     href="/assess"
                     className="group block w-full text-center text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
                   >
-                    Start Your Free Assessment <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
+                    Start Your Free Assessment <span className="inline-block text-base transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
                   </Link>
                 </div>
               </motion.div>
