@@ -53,13 +53,13 @@ export default function LandingPage() {
             <motion.div variants={fadeUp} className="flex flex-col items-center gap-3">
               <Link
                 href="/assess"
-                className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
+                className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
               >
                 Start Your Free Assessment <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
               </Link>
               <a
                 href="#painpoints"
-                className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 pixel-btn shadow-[3px_3px_0px_#4b5563] dark:shadow-[3px_3px_0px_#9ca3af] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f]"
+                className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 pixel-btn border border-gray-200 dark:border-gray-700 shadow-[3px_3px_0px_#4b5563] dark:shadow-[3px_3px_0px_#9ca3af] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f]"
               >
                 Identify your painpoints <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
               </a>
@@ -91,7 +91,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="painpoints" className="max-w-xl mx-auto w-full px-6 pb-16">
+        <section id="painpoints" className="max-w-3xl mx-auto w-full px-6 pb-16">
           <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-6 text-center">
             Where does it hurt?
           </h2>

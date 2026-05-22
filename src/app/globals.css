@@ -37,11 +37,6 @@ body {
   animation: grid-shift 4s linear infinite;
 }
 
-button.pixel-btn,
-a.pixel-btn {
-  border: none !important;
-}
-
 .pixel-btn {
   position: relative;
   transition: box-shadow 0.1s, transform 0.1s;
