@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 interface Node {
@@ -42,6 +42,11 @@ const edges: [string, string, string][] = [
 export function PainPointGrid() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [dark, setDark] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setDark(document.documentElement.classList.contains("dark"));
@@ -59,16 +64,35 @@ export function PainPointGrid() {
     setSelected(next);
   };
 
+  const onWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.1 : 0.1;
+    setScale((s) => Math.max(0.5, Math.min(3, s + delta)));
+  };
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    if (e.button !== 0) return;
+    setDragging(true);
+    setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!dragging) return;
+    setPan({ x: e.clientX - dragStart.x, y: e.clientY - dragStart.y });
+  };
+
+  const onMouseUp = () => setDragging(false);
+
   const borderClr = dark ? "#1f2937" : "#e5e7eb";
-  const selBorderClr = "#2563eb";
-  const selShadowClr = "#2563eb";
+  const selBorderClr = dark ? "#f87171" : "#dc2626";
+  const selShadowClr = dark ? "#f87171" : "#dc2626";
   const shadowClr = dark ? "#374151" : "#e5e7eb";
   const hoverShadowClr = dark ? "#1e3a5f" : "#bfdbfe";
   const hoverBorderClr = dark ? "#60a5fa" : "#93c5fd";
-  const textClr = dark ? "#9ca3af" : "#6b7280";
-  const selTextClr = "#2563eb";
+  const textClr = dark ? "#60a5fa" : "#2563eb";
+  const selTextClr = dark ? "#f87171" : "#dc2626";
   const bgClr = dark ? "rgba(17,24,39,0.8)" : "rgba(255,255,255,0.8)";
-  const selBgClr = dark ? "rgba(37,99,235,0.2)" : "rgba(37,99,235,0.15)";
+  const selBgClr = dark ? "rgba(220,38,38,0.2)" : "rgba(220,38,38,0.12)";
 
   return (
     <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
@@ -76,18 +100,62 @@ export function PainPointGrid() {
         Click the stages where you have pain points
       </h3>
 
-      <div className="relative max-w-md mx-auto" style={{ aspectRatio: "4/3" }}>
+      <div
+        ref={containerRef}
+        className="relative w-full overflow-hidden select-none"
+        style={{ aspectRatio: "5/3", cursor: dragging ? "grabbing" : "grab" }}
+        onWheel={onWheel}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
+            transformOrigin: "0 0",
+          }}
+        >
+        {edges.map(([from, to], i) => {
+          const f = nodes.find((n) => n.id === from)!;
+          const t = nodes.find((n) => n.id === to)!;
+          const x1 = (f.col - 1) * 28 + 12;
+          const y1 = (f.row - 1) * 38 + 14;
+          const x2 = (t.col - 1) * 28 + 12;
+          const y2 = (t.row - 1) * 38 + 14;
+          const dx = x2 - x1;
+          const dy = y2 - y1;
+          const length = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+          return (
+            <div
+              key={i}
+              className="absolute pointer-events-none"
+              style={{
+                left: `${x1}%`,
+                top: `${y1}%`,
+                width: `${length}%`,
+                height: "1px",
+                background: dark ? "#374151" : "#d1d5db",
+                transform: `rotate(${angle}deg)`,
+                transformOrigin: "0 0",
+              }}
+            />
+          );
+        })}
         {nodes.map((node) => {
           const isSel = selected.has(node.id);
           return (
             <button
               key={node.id}
+              onMouseDown={(e) => e.stopPropagation()}
               onClick={() => toggle(node.id)}
-              className="absolute px-3 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-150 pixel-btn"
+              className="absolute px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider transition-all duration-150 pixel-btn"
               style={{
-                left: `${(node.col - 1) * 28 + 2}%`,
-                top: `${(node.row - 1) * 38 + 2}%`,
-                width: "23%",
+                left: `${(node.col - 1) * 28 + 1}%`,
+                top: `${(node.row - 1) * 38 + 1}%`,
+                width: "22%",
                 boxShadow: isSel
                   ? `3px 3px 0px ${selShadowClr}`
                   : `3px 3px 0px ${shadowClr}`,
@@ -115,33 +183,25 @@ export function PainPointGrid() {
           );
         })}
 
-        {edges.map(([from, to, dir], i) => {
-          const f = nodes.find((n) => n.id === from)!;
-          const t = nodes.find((n) => n.id === to)!;
-          return (
-            <span
-              key={i}
-              className="absolute text-xs pointer-events-none select-none"
-              style={{
-                color: dark ? "#374151" : "#d1d5db",
-                left: `${((f.col - 1) * 28 + (t.col - 1) * 28) / 2 + 14}%`,
-                top: `${((f.row - 1) * 38 + (t.row - 1) * 38) / 2 + 12}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              {dir}
-            </span>
-          );
-        })}
-      </div>
-
-      <div className="text-center mt-6">
-        <Link
-          href={`/assess${selected.size > 0 ? `?pains=${Array.from(selected).join(",")}` : ""}`}
-          className="inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
-        >
-          Analyze My Pain Points →
-        </Link>
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+          {edges.map(([from, to], i) => {
+            const f = nodes.find((n) => n.id === from)!;
+            const t = nodes.find((n) => n.id === to)!;
+            const x1 = (f.col - 1) * 28 + 12;
+            const y1 = (f.row - 1) * 38 + 14;
+            const x2 = (t.col - 1) * 28 + 12;
+            const y2 = (t.row - 1) * 38 + 14;
+            return (
+              <line
+                key={i}
+                x1={x1} y1={y1} x2={x2} y2={y2}
+                stroke={dark ? "#374151" : "#d1d5db"}
+                strokeWidth="0.5"
+              />
+            );
+          })}
+        </svg>
+        </div>
       </div>
     </div>
   );
