@@ -28,7 +28,7 @@ export default function LandingPage() {
               <motion.p variants={fadeUp} className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
                 Free Infrastructure Health Check
               </motion.p>
-              <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl font-bold leading-tight text-gray-900 dark:text-white mb-2">
+              <motion.h1 variants={fadeUp} className="text-2xl sm:text-3xl font-bold leading-tight text-gray-900 dark:text-white mb-2">
                 Score your infrastructure<br />
                 <span className="text-blue-600 dark:text-blue-400">in 2 minutes.</span>
               </motion.h1>
