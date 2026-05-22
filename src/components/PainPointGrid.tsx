@@ -83,7 +83,7 @@ export function PainPointGrid() {
   return (
     <div className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
       <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-4">
-        Identify your painpoints
+        Identify your <span className="text-red-500 dark:text-red-400">painpoints</span>
       </h2>
       <h3 className="text-xs text-gray-500 dark:text-gray-400 mb-4">
         Click the stages where you have pain points
