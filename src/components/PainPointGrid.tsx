@@ -81,7 +81,7 @@ export function PainPointGrid() {
   );
 
   return (
-    <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
+    <div className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
       <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 text-center">
         Click the stages where you have pain points
       </h3>
