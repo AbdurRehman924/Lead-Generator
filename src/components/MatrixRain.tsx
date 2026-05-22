@@ -33,7 +33,8 @@ export function MatrixRain() {
     const drops: number[] = Array(cols).fill(0);
 
     const draw = () => {
-      ctx.fillStyle = "rgba(3, 7, 18, 0.06)";
+      const isDark = document.documentElement.classList.contains("dark");
+      ctx.fillStyle = isDark ? "rgba(3, 7, 18, 0.06)" : "rgba(255, 255, 255, 0.15)";
       ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
       ctx.font = "bold 14px monospace";
@@ -44,7 +45,7 @@ export function MatrixRain() {
         const x = i * 20 + 10;
         const y = drops[i] * 14;
 
-        ctx.fillStyle = Math.random() > 0.95 ? "#2563eb" : "#6b7280";
+        ctx.fillStyle = Math.random() > 0.95 ? "#2563eb" : isDark ? "#6b7280" : "#9ca3af";
         ctx.globalAlpha = 0.5 + Math.random() * 0.3;
         ctx.fillText(kw, x, y);
         ctx.globalAlpha = 1;
