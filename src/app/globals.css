@@ -27,15 +27,6 @@ body {
   border-radius: 0;
 }
 
-@keyframes grid-shift {
-  0% { background-position: 0 0; }
-  100% { background-position: 4rem 4rem; }
-}
-
-.animate-grid {
-  animation: grid-shift 10s linear infinite;
-}
-
 
 
 button.pixel-btn,
