@@ -65,7 +65,6 @@ export default function LandingPage() {
               </motion.div>
 
               <motion.div variants={fadeUp} className="mt-6">
-                <h3 className="text-xs font-bold text-gray-900 dark:text-white mb-3">Choose your assessment</h3>
                 <div className="flex gap-3 overflow-x-auto pb-2 -mx-6 px-6 snap-x snap-mandatory">
                   {Object.values(calculators).map((calc) => (
                     <Link
