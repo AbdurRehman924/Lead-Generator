@@ -49,12 +49,18 @@ export default function LandingPage() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp}>
+            <motion.div variants={fadeUp} className="flex flex-col items-center gap-3">
               <Link
                 href="/assess"
                 className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
               >
                 Start Your Free Assessment <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
+              </Link>
+              <Link
+                href="/assess"
+                className="text-xs tracking-wider uppercase text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Identify your painpoints →
               </Link>
             </motion.div>
           </motion.div>
