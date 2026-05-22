@@ -77,11 +77,14 @@ export default function LandingPage() {
               <Link
                 key={calc.id}
                 href={`/assess/${calc.id}`}
-                className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
+                className="group bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
               >
-                <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold mb-1">
-                  {calc.categories.length} categories
-                </p>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold">
+                    {calc.categories.length} categories
+                  </p>
+                  <span className="text-xs text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white -translate-x-1 group-hover:translate-x-0 transition-all duration-200">→</span>
+                </div>
                 <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{calc.tagline}</p>
               </Link>
