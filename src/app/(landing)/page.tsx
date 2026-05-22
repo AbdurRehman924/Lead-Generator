@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { calculators } from "@/lib/calculators/config";
 import { GridBg } from "@/components/GridBg";
 import { PainPointGrid } from "@/components/PainPointGrid";
+import { AssessCarousel } from "@/components/AssessCarousel";
 
 
 const fadeUp = {
@@ -52,23 +53,9 @@ export default function LandingPage() {
                 </div>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="mt-6">
-                <div className="flex gap-3 overflow-x-auto pb-2 -mx-6 px-6 snap-x snap-mandatory">
-                  {Object.values(calculators).map((calc) => (
-                    <Link
-                      key={calc.id}
-                      href={`/assess/${calc.id}`}
-                      className="group flex-shrink-0 w-48 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200 snap-start"
-                    >
-                      <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold mb-1">
-                        {calc.categories.length} categories
-                      </p>
-                      <h4 className="text-xs font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h4>
-                      <p className="text-[10px] text-gray-500 dark:text-gray-400 leading-relaxed">{calc.tagline}</p>
-                    </Link>
-                  ))}
-                </div>
-                <div className="flex justify-start mt-4">
+              <motion.div variants={fadeUp} className="mt-6 max-w-xs">
+                <AssessCarousel />
+                <div className="flex justify-start mt-3">
                   <Link
                     href="/assess"
                     className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
