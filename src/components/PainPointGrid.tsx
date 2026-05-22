@@ -85,7 +85,7 @@ export function PainPointGrid() {
         Click the stages where you have pain points
       </h3>
 
-      <div className="font-mono text-xs leading-loose overflow-x-auto max-w-sm mx-auto">
+      <div className="font-mono text-xs leading-loose overflow-x-auto overflow-y-auto max-w-sm mx-auto" style={{ maxHeight: "340px" }}>
         <div className={`flex items-center px-2 py-1 mb-2 border-b ${dark ? "border-gray-800 text-gray-300" : "border-gray-200 text-gray-700"}`}>
           <span className="font-bold tracking-wider">▼ Supply Chain</span>
         </div>
