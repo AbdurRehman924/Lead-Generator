@@ -2,7 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ01";
+const keywords = [
+  "AWS", "CINCH", "CLOUD", "COST", "SCORE", "DEPLOY",
+  "CI/CD", "SECURE", "AUDIT", "FIX", "SPEED", "FULL",
+  "STACK", "API", "NEXT", "SEO", "K8s", "TERRAFORM",
+  "DOCKER", "LINUX", "MONITOR", "BACKUP", "SCALE",
+  "BUILD", "SHIP", "OPS", "PROD", "STAGE", "TEST",
+];
 
 export function MatrixRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,19 +36,20 @@ export function MatrixRain() {
       ctx.fillStyle = "rgba(3, 7, 18, 0.06)";
       ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
 
-      ctx.font = "14px monospace";
+      ctx.font = "bold 14px monospace";
+      ctx.textAlign = "center";
 
       for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * 16;
-        const y = drops[i] * 16;
+        const kw = keywords[Math.floor(Math.random() * keywords.length)];
+        const x = i * 20 + 10;
+        const y = drops[i] * 14;
 
-        ctx.fillStyle = y > 0 && Math.random() > 0.98
-          ? "#2563eb"
-          : "#6b7280";
-        ctx.fillText(char, x, y);
+        ctx.fillStyle = Math.random() > 0.95 ? "#2563eb" : "#6b7280";
+        ctx.globalAlpha = 0.5 + Math.random() * 0.3;
+        ctx.fillText(kw, x, y);
+        ctx.globalAlpha = 1;
 
-        if (y > canvas.offsetHeight && Math.random() > 0.975) {
+        if (y > canvas.offsetHeight + 20 && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;
