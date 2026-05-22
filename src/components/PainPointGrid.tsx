@@ -126,11 +126,9 @@ export function PainPointGrid() {
                   <span className={`text-xs font-bold tracking-wider ${dark ? "text-gray-400" : "text-gray-500"}`}>
                     {g.label}
                   </span>
-                  {groupSelection > 0 && (
-                    <span className={`text-[10px] px-1.5 py-0.5 ${dark ? "bg-red-900/30 text-red-400" : "bg-red-100 text-red-600"}`}>
-                      {groupSelection}
-                    </span>
-                  )}
+                  <span className={`text-[10px] px-1.5 py-0.5 ${dark ? "bg-red-900/30 text-red-400" : "bg-red-100 text-red-600"} ${groupSelection > 0 ? "" : "invisible"}`}>
+                    {groupSelection || 0}
+                  </span>
                 </button>
               </div>
 
