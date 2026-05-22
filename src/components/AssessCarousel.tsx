@@ -19,14 +19,14 @@ export function AssessCarousel() {
   const card = list[idx];
 
   return (
-    <div className="relative border border-gray-200 dark:border-gray-800 p-4 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]" style={{ height: "8rem" }}>
+    <div className="relative border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]" style={{ height: "10rem" }}>
       <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold mb-1">
         {card.categories.length} categories
       </p>
       <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{card.name}</h4>
       <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{card.tagline}</p>
 
-      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+      <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
         <div className="flex gap-1.5">
           {list.map((_, i) => (
             <span

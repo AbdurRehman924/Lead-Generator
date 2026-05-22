@@ -53,7 +53,7 @@ export default function LandingPage() {
                 </div>
               </motion.div>
 
-              <motion.div variants={fadeUp} className="mt-6 max-w-xs">
+              <motion.div variants={fadeUp} className="mt-6 max-w-sm">
                 <AssessCarousel />
                 <div className="flex justify-start mt-3">
                   <Link
