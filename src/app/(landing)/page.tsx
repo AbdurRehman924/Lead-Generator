@@ -58,9 +58,9 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/assess"
-                className="text-xs tracking-wider uppercase text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="group inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 pixel-btn shadow-[3px_3px_0px_#4b5563] dark:shadow-[3px_3px_0px_#9ca3af] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f]"
               >
-                Identify your painpoints →
+                Identify your painpoints <span className="inline-block transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
               </Link>
             </motion.div>
           </motion.div>
