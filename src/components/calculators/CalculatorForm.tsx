@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import type { CalculatorConfig } from "@/lib/calculators/config";
@@ -11,11 +11,17 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
-  const [email, setEmail] = useState("");
 
   const question = config.questions[step];
   const isLast = step === config.questions.length - 1;
   const isComplete = answers.length === config.questions.length;
+
+  useEffect(() => {
+    if (!isComplete) return;
+    const params = new URLSearchParams();
+    answers.forEach((a) => params.set(a.questionId, a.value));
+    router.push(`/report/${config.id}?${params.toString()}`);
+  }, [isComplete]);
 
   const select = (value: string) => {
     const existing = answers.findIndex((a) => a.questionId === question.id);
@@ -40,53 +46,11 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
     setStep(Math.max(0, step - 1));
   };
 
-  const submit = () => {
-    const params = new URLSearchParams();
-    answers.forEach((a) => params.set(a.questionId, a.value));
-    if (email) params.set("email", email);
-    router.push(`/report/${config.id}?${params.toString()}`);
-  };
-
   if (isComplete) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]"
-      >
-        <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3">
-          All questions answered
-        </h2>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-          Enter your email to get your full report with scores, analysis, and recommendations.
-        </p>
-        <div className="flex gap-3">
-          <input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-1 border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400"
-          />
-          <button
-            onClick={submit}
-            className="text-xs tracking-wider uppercase px-4 py-2 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
-          >
-            Get Report
-          </button>
-        </div>
-        <button
-          onClick={() => {
-            setDirection(0);
-            setStep(0);
-            setAnswers([]);
-            setEmail("");
-          }}
-          className="mt-4 text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors"
-        >
-          Start over
-        </button>
-      </motion.div>
+      <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] text-center">
+        <p className="text-sm text-gray-500 dark:text-gray-400">Loading your report...</p>
+      </div>
     );
   }
 
