@@ -34,7 +34,7 @@ body {
 }
 
 .animate-grid {
-  animation: grid-shift 8s linear infinite;
+  animation: grid-shift 4s linear infinite;
 }
 
 button.pixel-btn,
