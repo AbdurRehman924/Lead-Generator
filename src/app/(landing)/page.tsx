@@ -71,6 +71,13 @@ export default function LandingPage() {
           </motion.div>
         </section>
 
+        <section id="painpoints" className="max-w-3xl mx-auto w-full px-6 pb-8">
+          <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-4 text-center">
+            Where does it hurt?
+          </h2>
+          <PainPointGrid />
+        </section>
+
         <section className="max-w-5xl mx-auto w-full px-6 py-16">
           <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-6 text-center">
             Choose your assessment
@@ -93,13 +100,6 @@ export default function LandingPage() {
               </Link>
             ))}
           </div>
-        </section>
-
-        <section id="painpoints" className="max-w-3xl mx-auto w-full px-6 pb-16">
-          <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-6 text-center">
-            Where does it hurt?
-          </h2>
-          <PainPointGrid />
         </section>
       </main>
 
