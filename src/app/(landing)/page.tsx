@@ -85,8 +85,8 @@ export default function LandingPage() {
                   </p>
                   <span className="text-sm transition-all duration-200 group-hover:tracking-widest group-hover:text-blue-500" style={{ textShadow: '0 0 0 transparent' }}>→</span>
                   <span className="absolute inset-0 flex items-center justify-end pr-5 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none">
-                    <span className="text-lg font-bold tracking-[6px] text-blue-500 group-hover:animate-pulse" style={{ textShadow: '2px 2px 0 rgba(37,99,235,0.3), -1px -1px 0 rgba(37,99,235,0.15), 3px 3px 0 rgba(37,99,235,0.1)' }}>
-                      ▸▸▸▸▸
+                    <span className="text-base font-bold tracking-[4px] text-blue-500 group-hover:animate-pulse" style={{ textShadow: '2px 2px 0 rgba(37,99,235,0.3), -1px -1px 0 rgba(37,99,235,0.15), 3px 3px 0 rgba(37,99,235,0.1)' }}>
+                      ▸▸▸
                     </span>
                   </span>
                 </div>
