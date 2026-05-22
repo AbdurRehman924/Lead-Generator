@@ -66,14 +66,6 @@ export default function LandingPage() {
           </motion.div>
         </section>
 
-        <section className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-3">
-          <div className="max-w-5xl mx-auto px-6 flex items-center justify-center gap-8 text-xs tracking-wider uppercase text-gray-500 dark:text-gray-400">
-            <span>AWS · Terraform · CI/CD</span>
-            <span className="hidden sm:inline">Next.js · React · Node</span>
-            <span className="hidden sm:inline">Docker · K8s · SEO</span>
-          </div>
-        </section>
-
         <section className="max-w-5xl mx-auto w-full px-6 py-16">
           <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-6 text-center">
             Choose your assessment
