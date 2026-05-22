@@ -19,12 +19,19 @@ export function AssessCarousel() {
   const card = list[idx];
 
   return (
-    <div className="relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200" style={{ height: "10rem" }}>
+    <div className="relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200" style={{ height: "12rem" }}>
       <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold mb-1">
-        {card.categories.length} categories
+        {card.categories.length} dimensions
       </p>
       <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{card.name}</h4>
-      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{card.tagline}</p>
+      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2">{card.tagline}</p>
+      <div className="flex flex-wrap gap-1">
+        {card.categories.map((c) => (
+          <span key={c.id} className="text-[9px] px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+            {c.label}
+          </span>
+        ))}
+      </div>
 
       <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
         <div className="flex gap-1.5">
