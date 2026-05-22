@@ -27,7 +27,7 @@ export default async function ReportPage({
 
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
-      <main className="flex-1 max-w-2xl mx-auto w-full px-6 pt-20 pb-12">
+      <main className="flex-1 max-w-2xl mx-auto w-full px-6 pt-16 pb-12">
         <ReportCard result={result} />
         <EmailCapture calculatorName={config.name} />
 

@@ -4,7 +4,7 @@ import { calculators } from "@/lib/calculators/config";
 export default function AssessPage() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
-      <main className="flex-1 max-w-3xl mx-auto w-full px-6 pt-24 pb-16">
+      <main className="flex-1 max-w-3xl mx-auto w-full px-6 pt-16 pb-16">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
           Infrastructure Health Check
         </h1>
