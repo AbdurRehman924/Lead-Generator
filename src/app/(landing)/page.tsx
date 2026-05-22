@@ -83,7 +83,15 @@ export default function LandingPage() {
                   <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold">
                     {calc.categories.length} categories
                   </p>
-                  <span className="text-xs text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white -translate-x-1 group-hover:translate-x-0 transition-all duration-200">→</span>
+                  <span className="inline-block -translate-x-1 group-hover:translate-x-0 opacity-0 group-hover:opacity-100 transition-all duration-200">
+                    <svg width="18" height="14" viewBox="0 0 18 14" fill="currentColor" className="text-blue-500">
+                      <rect x="6" y="0" width="4" height="4" />
+                      <rect x="2" y="2" width="14" height="4" />
+                      <rect x="0" y="4" width="18" height="4" />
+                      <rect x="2" y="6" width="14" height="4" />
+                      <rect x="6" y="8" width="4" height="4" />
+                    </svg>
+                  </span>
                 </div>
                 <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{calc.tagline}</p>
