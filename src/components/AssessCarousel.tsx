@@ -19,7 +19,7 @@ export function AssessCarousel() {
   const card = list[idx];
 
   return (
-    <div className="relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]" style={{ height: "10rem" }}>
+    <div className="relative bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200" style={{ height: "10rem" }}>
       <p className="text-[10px] tracking-wider uppercase text-blue-600 font-semibold mb-1">
         {card.categories.length} categories
       </p>
