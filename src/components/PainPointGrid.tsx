@@ -90,7 +90,7 @@ export function PainPointGrid() {
       </h3>
 
       <div
-        className={`font-mono text-xs leading-loose overflow-x-auto max-w-md mx-auto ${dark ? "bg-gray-900" : "bg-gray-100"}`}
+        className={`font-mono text-xs leading-loose overflow-x-auto ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
           maxHeight: "340px",
           minHeight: "200px",
@@ -178,9 +178,9 @@ export function PainPointGrid() {
       <div className="text-center mt-5">
         <Link
           href={`/assess${selected.size > 0 ? `?pains=${Array.from(selected).join(",")}` : ""}`}
-          className="inline-block text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
+          className="group block w-full text-center text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
         >
-          Analyze My Pain Points →
+          Analyze My Pain Points <span className="inline-block text-base transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
         </Link>
       </div>
     </div>
