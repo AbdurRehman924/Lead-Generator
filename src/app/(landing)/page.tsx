@@ -22,14 +22,14 @@ export default function LandingPage() {
             animate="animate"
             transition={{ staggerChildren: 0.1 }}
           >
-            <motion.p variants={fadeUp} className="text-sm tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-4">
+            <motion.p variants={fadeUp} className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
               Free Infrastructure Health Check
             </motion.p>
-            <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl font-bold leading-tight text-gray-900 dark:text-white mb-4">
+            <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl font-bold leading-tight text-gray-900 dark:text-white mb-4">
               Score your infrastructure<br />
               <span className="text-blue-600 dark:text-blue-400">in 2 minutes.</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg mx-auto mb-6">
+            <motion.p variants={fadeUp} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed max-w-lg mx-auto mb-6 font-medium">
               Answer 7 quick questions about your cloud, app, or deployment pipeline.
               Get a scored report with a letter grade, category breakdown, and actionable fixes.
             </motion.p>
