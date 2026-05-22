@@ -11,24 +11,35 @@ interface Item {
 }
 
 const items: Item[] = [
+  { id: "idea", label: "Idea", depth: 1, parent: null },
   { id: "plan", label: "Plan", depth: 1, parent: null },
+  { id: "design", label: "Design", depth: 1, parent: null },
   { id: "code", label: "Code", depth: 1, parent: null },
+  { id: "review", label: "Review", depth: 1, parent: null },
   { id: "build", label: "Build", depth: 1, parent: null },
   { id: "test", label: "Test", depth: 1, parent: null },
+  { id: "scan", label: "Scan", depth: 1, parent: null },
+  { id: "registry", label: "Registry", depth: 1, parent: null },
   { id: "staging", label: "Staging", depth: 1, parent: null },
   { id: "release", label: "Release", depth: 1, parent: null },
   { id: "deploy", label: "Deploy", depth: 1, parent: null },
+  { id: "verify", label: "Verify", depth: 1, parent: null },
+  { id: "rollback", label: "Rollback", depth: 1, parent: null },
   { id: "monitor", label: "Monitor", depth: 1, parent: null },
-  { id: "secure", label: "Secure", depth: 1, parent: null },
-  { id: "cost", label: "Cost", depth: 1, parent: null },
+  { id: "alert", label: "Alert", depth: 1, parent: null },
+  { id: "incident", label: "Incident", depth: 1, parent: null },
   { id: "backup", label: "Backup", depth: 1, parent: null },
+  { id: "cost", label: "Cost", depth: 1, parent: null },
+  { id: "secure", label: "Secure", depth: 1, parent: null },
+  { id: "compliance", label: "Compliance", depth: 1, parent: null },
   { id: "seo", label: "SEO", depth: 1, parent: null },
+  { id: "analytics", label: "Analytics", depth: 1, parent: null },
 ];
 
 const groups = [
-  { label: "DevOps Pipeline", start: 0, end: 4 },
-  { label: "Delivery", start: 4, end: 8 },
-  { label: "Operations", start: 8, end: 12 },
+  { label: "DevOps Pipeline", start: 0, end: 8 },
+  { label: "Delivery", start: 8, end: 14 },
+  { label: "Operations", start: 14, end: 23 },
 ];
 
 export function PainPointGrid() {
