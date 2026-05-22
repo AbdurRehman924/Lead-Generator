@@ -112,7 +112,7 @@ export function PainPointGrid() {
                 </div>
                 <button
                   onClick={() => toggleGroup(gi)}
-                  className="flex items-center gap-2 px-1 py-1 w-full text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                  className="flex items-center gap-2 px-1 py-1 w-full text-left hover:bg-blue-50 dark:hover:bg-blue-950 transition-colors"
                 >
                   <span className={`text-xs ${dark ? "text-gray-600" : "text-gray-400"}`}>
                     {isOpen ? "▼" : "▶"}
@@ -137,7 +137,7 @@ export function PainPointGrid() {
                       <button
                         key={it.id}
                         onClick={() => toggleItem(it.id)}
-                        className="flex items-center w-full text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                        className="flex items-center w-full text-left hover:bg-blue-50 dark:hover:bg-blue-950 transition-colors"
                         style={{ paddingLeft: "1.2rem" }}
                       >
                         <span className={`w-4 text-xs font-mono select-none flex-shrink-0 ${dark ? "text-gray-600" : "text-gray-300"}`}>
