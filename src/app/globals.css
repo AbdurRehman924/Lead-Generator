@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #111827;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #ededed;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+[class*="rounded"]:not(.rounded-full) {
+  border-radius: 0;
+}
+
+@keyframes grid-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 4rem 4rem; }
+}
+
+.animate-grid {
+  animation: grid-shift 10s linear infinite;
+}
+
+button.pixel-btn,
+a.pixel-btn {
+  border: none !important;
+}
+
+.pixel-btn {
+  position: relative;
+  transition: box-shadow 0.1s, transform 0.1s;
+}
+
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+}
+
+.pixel-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none !important;
 }
