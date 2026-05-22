@@ -89,6 +89,7 @@ export function PainPointGrid() {
         className={`font-mono text-xs leading-loose overflow-x-auto max-w-sm mx-auto ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
           maxHeight: "340px",
+          minHeight: "200px",
           overflowY: "scroll",
           maskImage: "linear-gradient(to bottom, transparent 0%, black 12px, black calc(100% - 12px), transparent 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 12px, black calc(100% - 12px), transparent 100%)",
