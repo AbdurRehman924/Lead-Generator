@@ -86,7 +86,7 @@ export function PainPointGrid() {
       </h3>
 
       <div
-        className={`font-mono text-xs leading-loose overflow-x-auto max-w-sm mx-auto ${dark ? "bg-gray-900" : "bg-gray-50"}`}
+        className={`font-mono text-xs leading-loose overflow-x-auto max-w-sm mx-auto ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
           maxHeight: "340px",
           overflowY: "scroll",
