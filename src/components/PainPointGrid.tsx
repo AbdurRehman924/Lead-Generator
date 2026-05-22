@@ -1,55 +1,39 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-interface Node {
+interface Item {
   id: string;
   label: string;
-  x: number;
-  y: number;
+  depth: number;
+  parent: number | null;
 }
 
-const BOX_W = 44;
-const BOX_H = 18;
-
-const nodes: Node[] = [
-  { id: "plan", label: "Plan", x: 12, y: 10 },
-  { id: "code", label: "Code", x: 68, y: 10 },
-  { id: "build", label: "Build", x: 124, y: 10 },
-  { id: "test", label: "Test", x: 180, y: 10 },
-  { id: "staging", label: "Staging", x: 180, y: 48 },
-  { id: "release", label: "Release", x: 124, y: 48 },
-  { id: "deploy", label: "Deploy", x: 68, y: 48 },
-  { id: "monitor", label: "Monitor", x: 12, y: 48 },
-  { id: "secure", label: "Secure", x: 12, y: 86 },
-  { id: "cost", label: "Cost", x: 68, y: 86 },
-  { id: "backup", label: "Backup", x: 124, y: 86 },
-  { id: "seo", label: "SEO", x: 180, y: 86 },
+const items: Item[] = [
+  { id: "plan", label: "Plan", depth: 1, parent: null },
+  { id: "code", label: "Code", depth: 1, parent: null },
+  { id: "build", label: "Build", depth: 1, parent: null },
+  { id: "test", label: "Test", depth: 1, parent: null },
+  { id: "staging", label: "Staging", depth: 1, parent: null },
+  { id: "release", label: "Release", depth: 1, parent: null },
+  { id: "deploy", label: "Deploy", depth: 1, parent: null },
+  { id: "monitor", label: "Monitor", depth: 1, parent: null },
+  { id: "secure", label: "Secure", depth: 1, parent: null },
+  { id: "cost", label: "Cost", depth: 1, parent: null },
+  { id: "backup", label: "Backup", depth: 1, parent: null },
+  { id: "seo", label: "SEO", depth: 1, parent: null },
 ];
 
-const edges: [string, string][] = [
-  ["plan", "code"],
-  ["code", "build"],
-  ["build", "test"],
-  ["test", "staging"],
-  ["staging", "release"],
-  ["release", "deploy"],
-  ["deploy", "monitor"],
-  ["monitor", "secure"],
-  ["secure", "cost"],
-  ["cost", "backup"],
-  ["backup", "seo"],
+const groups = [
+  { label: "DevOps Pipeline", start: 0, end: 4 },
+  { label: "Delivery", start: 4, end: 8 },
+  { label: "Operations", start: 8, end: 12 },
 ];
-
-const defaultViewBox = { x: 0, y: 0, w: 200, h: 110 };
 
 export function PainPointGrid() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [vb, setVb] = useState(defaultViewBox);
-  const [dragging, setDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0, vx: 0, vy: 0 });
-  const svgRef = useRef<SVGSVGElement>(null);
+  const [expanded, setExpanded] = useState<Set<number>>(new Set([0, 1, 2]));
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -62,48 +46,27 @@ export function PainPointGrid() {
     return () => observer.disconnect();
   }, []);
 
-  const toggle = (id: string) => {
+  const toggleItem = (id: string) => {
     const next = new Set(selected);
     if (next.has(id)) next.delete(id);
     else next.add(id);
     setSelected(next);
   };
 
-  const onWheel = (e: React.WheelEvent) => {
-    e.preventDefault();
-    const factor = e.deltaY > 0 ? 1.15 : 0.85;
-    const newW = Math.max(100, Math.min(600, vb.w * factor));
-    const newH = newW * (110 / 200);
-    setVb((p) => ({ x: p.x + (p.w - newW) / 2, y: p.y + (p.h - newH) / 2, w: newW, h: newH }));
+  const toggleGroup = (idx: number) => {
+    const next = new Set(expanded);
+    if (next.has(idx)) next.delete(idx);
+    else next.add(idx);
+    setExpanded(next);
   };
 
-  const onMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return;
-    setDragging(true);
-    setDragStart({ x: e.clientX, y: e.clientY, vx: vb.x, vy: vb.y });
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!dragging || !svgRef.current) return;
-    const rect = svgRef.current.getBoundingClientRect();
-    const scaleX = vb.w / rect.width;
-    const scaleY = vb.h / rect.height;
-    setVb((p) => ({
-      ...p,
-      x: dragStart.vx - (e.clientX - dragStart.x) * scaleX,
-      y: dragStart.vy - (e.clientY - dragStart.y) * scaleY,
-    }));
-  };
-
-  const onMouseUp = () => setDragging(false);
-
-  const lineClr = dark ? "#374151" : "#d1d5db";
   const textClr = dark ? "#60a5fa" : "#2563eb";
   const selTextClr = dark ? "#f87171" : "#dc2626";
-  const selBorderClr = dark ? "#f87171" : "#dc2626";
-  const selBgClr = dark ? "rgba(220,38,38,0.2)" : "rgba(220,38,38,0.12)";
-  const bgClr = dark ? "rgba(17,24,39,0.85)" : "rgba(255,255,255,0.85)";
-  const borderClr = dark ? "#374151" : "#d1d5db";
+  const lineClr = dark ? "#374151" : "#d1d5db";
+
+  const pipe = (
+    <span className={`text-xs font-mono select-none ${dark ? "text-gray-600" : "text-gray-300"}`}>│</span>
+  );
 
   return (
     <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
@@ -111,77 +74,77 @@ export function PainPointGrid() {
         Click the stages where you have pain points
       </h3>
 
-      <svg
-        ref={svgRef}
-        className="w-full select-none"
-        style={{ aspectRatio: "200/110", cursor: dragging ? "grabbing" : "grab" }}
-        viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}
-        onWheel={onWheel}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-      >
-        {edges.map(([from, to], i) => {
-          const f = nodes.find((n) => n.id === from)!;
-          const t = nodes.find((n) => n.id === to)!;
+      <div className="font-mono text-xs leading-loose overflow-x-auto max-w-sm mx-auto">
+        <div className={`flex items-center px-2 py-1 mb-2 border-b ${dark ? "border-gray-800 text-gray-300" : "border-gray-200 text-gray-700"}`}>
+          <span className="font-bold tracking-wider">▼ Supply Chain</span>
+        </div>
+
+        {groups.map((g, gi) => {
+          const isOpen = expanded.has(gi);
+          const groupSelection = items.slice(g.start, g.end).filter((it) => selected.has(it.id)).length;
+          const isLastGroup = gi === groups.length - 1;
           return (
-            <line
-              key={i}
-              x1={f.x + BOX_W / 2}
-              y1={f.y + BOX_H / 2}
-              x2={t.x + BOX_W / 2}
-              y2={t.y + BOX_H / 2}
-              stroke={lineClr}
-              strokeWidth="1"
-            />
+            <div key={gi}>
+              <div className="flex">
+                <div className="flex flex-col items-center" style={{ width: "1.2rem" }}>
+                  <span className={`text-xs font-mono select-none ${dark ? "text-gray-600" : "text-gray-300"}`}>
+                    {isLastGroup ? "└" : "├"}
+                  </span>
+                </div>
+                <button
+                  onClick={() => toggleGroup(gi)}
+                  className="flex items-center gap-2 px-1 py-1 w-full text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                >
+                  <span className={`text-xs ${dark ? "text-gray-600" : "text-gray-400"}`}>
+                    {isOpen ? "▼" : "▶"}
+                  </span>
+                  <span className={`text-xs font-bold tracking-wider ${dark ? "text-gray-400" : "text-gray-500"}`}>
+                    {g.label}
+                  </span>
+                  {groupSelection > 0 && (
+                    <span className={`text-[10px] px-1.5 py-0.5 ${dark ? "bg-red-900/30 text-red-400" : "bg-red-100 text-red-600"}`}>
+                      {groupSelection}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {isOpen && (
+                <div>
+                  {items.slice(g.start, g.end).map((it, i, arr) => {
+                    const isLastItem = i === arr.length - 1;
+                    const isSel = selected.has(it.id);
+                    return (
+                      <button
+                        key={it.id}
+                        onClick={() => toggleItem(it.id)}
+                        className="flex items-center w-full text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                        style={{ paddingLeft: "1.2rem" }}
+                      >
+                        <span className={`w-4 text-xs font-mono select-none flex-shrink-0 ${dark ? "text-gray-600" : "text-gray-300"}`}>
+                          {isLastGroup ? "" : pipe}
+                        </span>
+                        <span className={`w-4 text-xs font-mono select-none flex-shrink-0 ${dark ? "text-gray-600" : "text-gray-300"}`}>
+                          {isLastItem ? "└─" : "├─"}
+                        </span>
+                        <span
+                          className="text-xs font-bold tracking-wider transition-colors py-1"
+                          style={{ color: isSel ? selTextClr : textClr }}
+                        >
+                          {it.label}
+                        </span>
+                        {isSel && (
+                          <span className={`text-[10px] ml-2 ${dark ? "text-red-400" : "text-red-500"}`}>✕</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
         })}
-
-        {nodes.map((node) => {
-          const isSel = selected.has(node.id);
-          return (
-            <g
-              key={node.id}
-              onClick={() => toggle(node.id)}
-              className="cursor-pointer"
-            >
-              <rect
-                x={node.x}
-                y={node.y}
-                width={BOX_W}
-                height={BOX_H}
-                rx="0"
-                fill={isSel ? selBgClr : bgClr}
-                stroke={isSel ? selBorderClr : borderClr}
-                strokeWidth="1.5"
-                filter={isSel ? "url(#selShadow)" : "url(#shadow)"}
-              />
-              <text
-                x={node.x + BOX_W / 2}
-                y={node.y + BOX_H / 2 + 4.5}
-                textAnchor="middle"
-                fontSize="10"
-                fontFamily="ui-monospace, monospace"
-                fontWeight="bold"
-                fill={isSel ? selTextClr : textClr}
-                letterSpacing="1"
-              >
-                {node.label}
-              </text>
-            </g>
-          );
-        })}
-
-        <defs>
-          <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
-            <feDropShadow dx="2" dy="2" stdDeviation="0" floodColor="#d1d5db" floodOpacity="0.6" />
-          </filter>
-          <filter id="selShadow" x="-10%" y="-10%" width="130%" height="130%">
-            <feDropShadow dx="2" dy="2" stdDeviation="0" floodColor="#dc2626" floodOpacity="0.6" />
-          </filter>
-        </defs>
-      </svg>
+      </div>
 
       <div className="text-center mt-5">
         <Link
