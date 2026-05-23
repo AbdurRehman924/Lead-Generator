@@ -5,7 +5,7 @@ export default function AssessPage() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 max-w-3xl mx-auto w-full px-6 pt-16 pb-16">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Infrastructure Health Check
         </h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-8">
@@ -19,8 +19,8 @@ export default function AssessPage() {
               href={`/assess/${calc.id}`}
               className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
             >
-              <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{calc.tagline}</p>
+              <h2 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h2>
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">{calc.tagline}</p>
               <p className="text-xs text-gray-400">{calc.categories.length} categories · {calc.questions.length} questions</p>
             </Link>
           ))}

@@ -65,7 +65,7 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
   return (
     <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
       <div className="flex items-center gap-2 mb-4">
-        <span className="text-[10px] tracking-wider uppercase text-gray-400">
+        <span className="text-[10px] sm:text-xs tracking-wider uppercase text-gray-400">
           Step {step + 1} of {config.questions.length}
         </span>
         <div className="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
@@ -81,7 +81,7 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
           exit="exit"
           transition={{ duration: 0.2, ease: "easeInOut" }}
         >
-          <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white mb-4">
             {question.label}
           </h2>
 
@@ -90,7 +90,7 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
               <button
                 key={`${question.id}-${option.value}`}
                 onClick={() => select(option.value)}
-                className={`w-full text-left px-4 py-3 text-sm border transition-all duration-150 ${
+                className={`w-full text-left px-4 py-3 text-sm border cursor-pointer transition-all duration-150 hover:-translate-y-0.5 hover:shadow-[2px_2px_0px_#d1d5db] dark:hover:shadow-[2px_2px_0px_#374151] ${
                   currentAnswer?.value === option.value
                     ? "border-blue-600 bg-blue-50 dark:bg-blue-900/20 text-gray-900 dark:text-white"
                     : "border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700"
@@ -106,7 +106,7 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
       <div className="flex items-center justify-between mt-6">
         <button
           onClick={back}
-          className={`text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors ${
+          className={`text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white cursor-pointer transition-colors ${
             step === 0 ? "invisible" : ""
           }`}
         >
