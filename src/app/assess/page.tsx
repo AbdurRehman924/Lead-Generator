@@ -5,11 +5,11 @@ export default function AssessPage() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 max-w-3xl mx-auto w-full px-6 pt-16 pb-16">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          Find the cracks before they break.
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          An honest look at your infrastructure.
         </h1>
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-8">
-          Pick a calculator. Answer 7 questions. Get an honest report with specific fixes — ranked by impact.
+          Pick a calculator. Answer 7 questions. Know what&apos;s working. Fix what isn&apos;t.
         </p>
 
         <div className="grid gap-4">

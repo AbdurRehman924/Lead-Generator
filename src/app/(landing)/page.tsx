@@ -27,12 +27,12 @@ export default function LandingPage() {
               <motion.p variants={fadeUp} className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
                 Free Infrastructure Audit
               </motion.p>
-              <motion.h1 variants={fadeUp} className="text-xl sm:text-2xl font-bold leading-tight text-gray-900 dark:text-white mb-3">
-                Find the cracks<br />
-                <span className="text-blue-600 dark:text-blue-400">before they break.</span>
+              <motion.h1 variants={fadeUp} className="text-lg sm:text-xl font-bold leading-tight text-gray-900 dark:text-white mb-3">
+                Know what&apos;s working. Fix what isn&apos;t.<br />
+                <span className="text-blue-600 dark:text-blue-400">An honest look at your infrastructure.</span>
               </motion.h1>
               <motion.p variants={fadeUp} className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-5 font-medium">
-                7 questions. 2 minutes. One honest report on what&apos;s broken — and exactly how to fix it. No fluff, no sales pitch. 5+ years shipping infrastructure across AWS, Azure, and Kubernetes.
+                7 questions. 2 minutes. One honest report on what&apos;s broken — and exactly how to fix it. No strings. Just answers. 5+ years shipping infrastructure across AWS, Azure, and Kubernetes.
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-2 sm:gap-3 mb-5 text-xs">

@@ -22,7 +22,7 @@ function ReportContent() {
 
   const result = calculateScore(id, answers);
 
-  const summaryText = `--- Infrastructure Health Check ---\nCalculator: ${config.name}\nGrade: ${result.grade} | Score: ${result.percentage}%\n\nCategory Breakdown:\n${result.categories.map((c) => `  ${c.label}: ${c.percentage}%`).join("\n")}\n\n--- What I Need ---\nI'd like Abdur Rehman to review these results and tell me:\n  1. What's the biggest risk right now?\n  2. What's the cheapest fix with the highest impact?\n  3. What does a realistic improvement look like?\n\nNo strings attached — just an honest assessment.`;
+  const summaryText = `--- Infrastructure Health Check ---\nCalculator: ${config.name}\nGrade: ${result.grade} | Score: ${result.percentage}%\n\nCategory Breakdown:\n${result.categories.map((c) => `  ${c.label}: ${c.percentage}%`).join("\n")}\n\n--- What I Need ---\nI want Abdur Rehman to look at this and tell me:\n  1. Which of these is quietly costing us the most right now?\n  2. What's the one fix that buys the most breathing room?\n  3. How long before we actually start feeling the difference?\n\nNo pitch. No pressure. Just tell me where to start.`;
 
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
