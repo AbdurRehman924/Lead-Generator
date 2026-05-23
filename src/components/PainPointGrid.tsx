@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { groups, type PainGroup } from "@/lib/pain-points";
+import { groupsBusiness, painLabelsTech, type PainGroup } from "@/lib/pain-points";
 
 export function PainPointGrid() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [techOpen, setTechOpen] = useState<Set<string>>(new Set());
   const [dark, setDark] = useState(false);
+  const groups = groupsBusiness;
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -52,9 +53,7 @@ export function PainPointGrid() {
         <span className="text-red-500 dark:text-red-400">painpoints</span>
       </h2>
       <h3 className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-        Find your problem below. It probably has a name — and a solution. These
-        aren&apos;t just checkboxes. They&apos;re problems I&apos;ve already
-        solved.
+        Find your problem below. It probably has a name — and a solution. These aren&apos;t just checkboxes. They&apos;re problems I&apos;ve already solved.
       </h3>
 
       <div
@@ -69,7 +68,7 @@ export function PainPointGrid() {
         }}
       >
         <div
-          className={`flex items-start gap-x-2 px-2 py-1 mb-2 border-b flex-wrap ${dark ? "border-gray-800 text-gray-300" : "border-gray-200 text-gray-700"}`}
+          className={`flex items-start justify-between gap-x-2 px-2 py-1 mb-2 border-b flex-wrap ${dark ? "border-gray-800 text-gray-300" : "border-gray-200 text-gray-700"}`}
         >
           <span className="font-bold tracking-wider">▼ Business Problems</span>
           <span className="flex items-center gap-2 text-[9px]">
@@ -166,11 +165,18 @@ export function PainPointGrid() {
                                 }`}
                               />
                             )}
-                            <span
-                              className={`text-xs sm:text-sm font-bold tracking-wider py-1 ${isSel ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"}`}
-                            >
-                              {child.label}
-                            </span>
+                            <div className="flex flex-col py-1 min-w-0">
+                              <span
+                                className={`text-xs sm:text-sm font-bold tracking-wider ${isSel ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"}`}
+                              >
+                                {child.label}
+                              </span>
+                              {painLabelsTech[child.id] && (
+                                <span className={`text-[10px] leading-tight ${dark ? "text-gray-500" : "text-gray-400"}`}>
+                                  {painLabelsTech[child.id]}
+                                </span>
+                              )}
+                            </div>
                             {child.tech && (
                               <button
                                 onClick={() =>
