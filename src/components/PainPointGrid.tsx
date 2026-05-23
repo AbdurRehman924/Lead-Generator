@@ -7,6 +7,7 @@ interface SubItem {
   id: string;
   label: string;
   tech: string;
+  severity?: string;
 }
 
 interface PainGroup {
@@ -18,89 +19,104 @@ interface PainGroup {
 
 const groups: PainGroup[] = [
   {
-    id: "planning",
-    label: "Planning your project",
-    description: "Ideas, roadmaps, and design docs",
+    id: "monitoring",
+    label: "You shouldn't hear about downtime from a customer",
+    description: "Every minute you don't know, someone else is already complaining",
     children: [
-      { id: "idea", label: "Idea → Specifications", tech: "" },
-      { id: "plan", label: "Plan → Tickets & sprints", tech: "Jira, Linear" },
-      { id: "design", label: "Design → Wireframes & mockups", tech: "Figma, Lucidchart" },
-    ],
-  },
-  {
-    id: "coding",
-    label: "Writing & reviewing code",
-    description: "Version control, pull requests, code quality",
-    children: [
-      { id: "code", label: "Code → Repos & branching", tech: "Git, GitHub, VS Code" },
-      { id: "review", label: "Review → Code reviews & approvals", tech: "PRs, CodeRabbit" },
-    ],
-  },
-  {
-    id: "building",
-    label: "Building & testing",
-    description: "Automated builds, tests, and security scans",
-    children: [
-      { id: "build", label: "Build → CI pipelines & containers", tech: "GitHub Actions, Docker" },
-      { id: "test", label: "Test → Unit, integration, E2E", tech: "Jest, Playwright, k6" },
-      { id: "scan", label: "Scan → Security & code quality", tech: "Trivy, Snyk, SonarQube" },
-    ],
-  },
-  {
-    id: "shipping",
-    label: "Storing & releasing",
-    description: "Container registries, staging, and release automation",
-    children: [
-      { id: "registry", label: "Registry → Image & artifact storage", tech: "GHCR, Docker Hub, ECR" },
-      { id: "staging", label: "Staging → Pre-prod environments", tech: "K8s, Terraform, Helm" },
-      { id: "release", label: "Release → Automated promotions", tech: "ArgoCD, GitOps" },
+      { id: "monitor", label: "We've been down for an hour before anyone on the team noticed", severity: "critical", tech: "Prometheus, Grafana" },
+      { id: "incident", label: "When things break, the team panics — there's no playbook", severity: "critical", tech: "Runbooks, Statuspage" },
+      { id: "alert", label: "Alerts either fire constantly or not at all — both are useless", severity: "warning", tech: "PagerDuty, Opsgenie" },
     ],
   },
   {
     id: "deploying",
-    label: "Deploying & operating",
-    description: "Deployments, verification, and rollbacks",
+    label: "Deploys that don't keep you up at night",
+    description: "A release shouldn't require a war room and a prayer",
     children: [
-      { id: "deploy", label: "Deploy → Production releases", tech: "ECS, K8s, CloudFormation" },
-      { id: "verify", label: "Verify → Post-deploy checks", tech: "Datadog, Sentry, PagerDuty" },
-      { id: "rollback", label: "Rollback → Safe revert strategies", tech: "Blue/Green, Canary" },
-    ],
-  },
-  {
-    id: "monitoring",
-    label: "Monitoring & alerting",
-    description: "Dashboards, alerts, and incident response",
-    children: [
-      { id: "monitor", label: "Monitor → Metrics & dashboards", tech: "Prometheus, Grafana" },
-      { id: "alert", label: "Alert → On-call notifications", tech: "PagerDuty, Opsgenie" },
-      { id: "incident", label: "Incident → Runbooks & status pages", tech: "Runbooks, Statuspage" },
-    ],
-  },
-  {
-    id: "ops",
-    label: "Backups & costs",
-    description: "Data protection and cloud spend",
-    children: [
-      { id: "backup", label: "Backup → Automated backups & restores", tech: "Velero, RDS Snapshot" },
-      { id: "cost", label: "Cost → Budget tracking & optimization", tech: "AWS Budgets, Infracost" },
+      { id: "deploy", label: "Every deployment feels like pulling a pin on a grenade", severity: "critical", tech: "ECS, K8s, CloudFormation" },
+      { id: "rollback", label: "The last bad release took 3 hours to undo — while users were affected", severity: "critical", tech: "Blue/Green, Canary" },
+      { id: "verify", label: "After deploying, we just... assume it worked", severity: "warning", tech: "Datadog, Sentry, PagerDuty" },
     ],
   },
   {
     id: "security",
-    label: "Security & compliance",
-    description: "Threat detection, governance, and audits",
+    label: "Protecting users — and your reputation",
+    description: "You don't want to find out you were breached from a news article",
     children: [
-      { id: "secure", label: "Secure → Threat detection & WAF", tech: "GuardDuty, WAF, IAM" },
-      { id: "compliance", label: "Compliance → Standards & auditing", tech: "SOC2, HIPAA, Config" },
+      { id: "secure", label: "We wouldn't know if we'd been breached — until it's on Twitter", severity: "critical", tech: "GuardDuty, WAF, IAM" },
+      { id: "compliance", label: "Enterprise clients ask for SOC2 proof — the deal dies there", severity: "critical", tech: "SOC2, HIPAA, Config" },
+      { id: "scan", label: "We have no idea what security holes exist in our codebase right now", severity: "critical", tech: "Trivy, Snyk, SonarQube" },
     ],
   },
   {
-    id: "growth",
-    label: "Growth & visibility",
-    description: "SEO, analytics, and user tracking",
+    id: "shipping",
+    label: "Getting features to users — fast and safely",
+    description: "Shipping should feel boring, not like defusing a bomb",
     children: [
-      { id: "seo", label: "SEO → Search optimization", tech: "Lighthouse, Schema.org" },
-      { id: "analytics", label: "Analytics → User behavior & insights", tech: "GA, Plausible, Mixpanel" },
+      { id: "release", label: "Every release needs the same person in the room or it doesn't happen", severity: "critical", tech: "ArgoCD, GitOps" },
+      { id: "staging", label: "Staging is so broken we've stopped using it", severity: "critical", tech: "K8s, Terraform, Helm" },
+      { id: "build", label: "Deploying a hotfix takes longer than writing it", severity: "warning", tech: "GitHub Actions, Docker" },
+      { id: "registry", label: "Old builds disappear — we can't roll back to a known good version", severity: "warning", tech: "GHCR, Docker Hub, ECR" },
+    ],
+  },
+  {
+    id: "building",
+    label: "Catching problems before users do",
+    description: "If users find it first, you've already lost their trust",
+    children: [
+      { id: "test", label: "We test in production and hope for the best", severity: "critical", tech: "Jest, Playwright, k6" },
+      { id: "bug", label: "The same bugs keep coming back — we fix symptoms, not causes", severity: "critical", tech: "Sentry, Linear" },
+      { id: "ci", label: "CI pipelines are flaky — half the team just reruns until it passes", severity: "warning", tech: "GitHub Actions, CircleCI" },
+    ],
+  },
+  {
+    id: "performance",
+    label: "Fast for users, not just on your laptop",
+    description: "Slowness you can't explain is revenue you can't see leaving",
+    children: [
+      { id: "slow", label: "The app is sluggish under load and nobody knows where to start", severity: "critical", tech: "k6, Datadog, Lighthouse" },
+      { id: "local", label: "Works perfectly locally — breaks in production every time", severity: "critical", tech: "Docker, Env Config" },
+      { id: "cascade", label: "One slow third-party API call takes down the whole app", severity: "warning", tech: "Circuit Breakers, Timeouts" },
+    ],
+  },
+  {
+    id: "coding",
+    label: "Code that doesn't come back to haunt you",
+    description: "One person leaving shouldn't put the whole product at risk",
+    children: [
+      { id: "code", label: "The codebase is only safe when one specific person is online", severity: "critical", tech: "Git, GitHub, VS Code" },
+      { id: "review", label: "Code gets merged because everyone's too busy to review it properly", severity: "warning", tech: "PRs, CodeRabbit" },
+      { id: "debt", label: "Tech debt is so bad that new features break old ones constantly", severity: "warning", tech: "SonarQube, Refactoring" },
+    ],
+  },
+  {
+    id: "ops",
+    label: "Data safety & cloud spend you can explain",
+    description: "One bad day shouldn't erase everything you've built",
+    children: [
+      { id: "backup", label: "If the database died right now, we'd lose everything — and have no plan", severity: "critical", tech: "Velero, RDS Snapshot" },
+      { id: "cost", label: "The AWS bill jumped 40% last month and nobody can explain it", severity: "critical", tech: "AWS Budgets, Infracost" },
+      { id: "infra", label: "Infrastructure exists only in someone's memory — nothing is documented", severity: "warning", tech: "Terraform, Pulumi" },
+    ],
+  },
+  {
+    id: "team",
+    label: "A team that can move without bottlenecks",
+    description: "Velocity shouldn't depend on who's online today",
+    children: [
+      { id: "onboard", label: "A new developer takes weeks before they can ship anything", severity: "critical", tech: "Docs, Dev Containers" },
+      { id: "knowledge", label: "Everything lives in one person's head — and they're burning out", severity: "critical", tech: "Notion, Confluence, Runbooks" },
+      { id: "docs", label: "No documentation — we figure things out by reading old code", severity: "warning", tech: "Swagger, Storybook, Wikis" },
+    ],
+  },
+  {
+    id: "planning",
+    label: "From idea to execution",
+    description: "Good ideas are worthless without a system to ship them",
+    children: [
+      { id: "plan", label: "Nobody agrees on what's being built — until it's already built wrong", severity: "critical", tech: "Jira, Linear" },
+      { id: "idea", label: "Great ideas keep dying in Slack threads and never get built", severity: "warning", tech: "" },
+      { id: "design", label: "Every developer designs their own way — and it shows", severity: "warning", tech: "Figma, Lucidchart" },
     ],
   },
 ];
@@ -141,24 +157,27 @@ export function PainPointGrid() {
   return (
     <div className="bg-white/70 dark:bg-gray-950/70 border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] h-full flex flex-col">
       <h2 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-1">
-        Identify your <span className="text-red-400 dark:text-red-300">painpoints</span>
+        Identify your <span className="text-green-600 dark:text-green-400">business</span> <span className="text-red-500 dark:text-red-400">painpoints</span>
       </h2>
       <h3 className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-        Check the boxes where you&apos;re feeling pain. No technical knowledge needed.
+        Find your problem below. It probably has a name — and a solution. These aren&apos;t just checkboxes. They&apos;re problems I&apos;ve already solved.
       </h3>
 
       <div
-        className={`font-mono text-xs leading-loose overflow-x-auto ${dark ? "bg-gray-900" : "bg-gray-100"}`}
+        className={`font-mono text-xs leading-loose overflow-x-auto flex-1 ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
           maxHeight: "380px",
-          minHeight: "180px",
-          overflowY: "scroll",
+          overflowY: "auto",
           maskImage: "linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 8px), transparent 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 8px), transparent 100%)",
         }}
       >
         <div className={`flex items-center px-2 py-1 mb-2 border-b ${dark ? "border-gray-800 text-gray-300" : "border-gray-200 text-gray-700"}`}>
-          <span className="font-bold tracking-wider">▼ Supply Chain</span>
+          <span className="font-bold tracking-wider">▼ Business Problems</span>
+          <span className="ml-auto flex items-center gap-2 text-[9px]">
+            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-red-500" />critical</span>
+            <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />warning</span>
+          </span>
         </div>
         <div className="pb-2">
           {groups.map((g, gi) => {
@@ -220,6 +239,11 @@ export function PainPointGrid() {
                             <span className={`w-4 text-sm font-mono select-none flex-shrink-0 ${dark ? "text-gray-600" : "text-gray-300"}`}>
                               {isLastChild ? "└─" : "├─"}
                             </span>
+                            {child.severity && (
+                              <span className={`w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0 ${
+                                child.severity === "critical" ? "bg-red-500" : "bg-amber-400"
+                              }`} />
+                            )}
                             <span
                               className={`text-xs sm:text-sm font-bold tracking-wider py-1 ${isSel ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"}`}
                             >
@@ -228,7 +252,7 @@ export function PainPointGrid() {
                             {child.tech && (
                               <button
                                 onClick={() => toggleSet(techOpen, setTechOpen, child.id)}
-                                className={`ml-2 text-[10px] px-1 py-0.5 border cursor-pointer transition-colors ${isTechOpen ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400" : "border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-500"}`}
+                                className={`ml-auto shrink-0 text-[10px] px-1 py-0.5 w-12 text-center border cursor-pointer transition-colors ${isTechOpen ? "bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400" : "border-gray-300 dark:border-gray-600 text-gray-400 dark:text-gray-500 hover:border-blue-300 dark:hover:border-blue-700 hover:text-blue-500"}`}
                               >
                                 {isTechOpen ? "▲ tech" : "▼ tech"}
                               </button>
