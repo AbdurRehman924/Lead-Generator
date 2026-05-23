@@ -12,7 +12,9 @@ export function Nav() {
           <span className="text-gray-900 dark:text-white">Cinch</span>
           <span className="text-gray-400"> ]</span>
         </Link>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          <a href="https://github.com/AbdurRehman924" className="text-[10px] tracking-wider uppercase text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">GitHub</a>
+          <a href="https://artariq.dev" className="text-[10px] tracking-wider uppercase text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">Portfolio</a>
           <ThemeToggle />
         </div>
       </div>
