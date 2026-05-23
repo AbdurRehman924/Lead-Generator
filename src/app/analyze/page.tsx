@@ -37,7 +37,7 @@ function AnalyzeContent() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 max-w-2xl mx-auto w-full px-6 pt-16 pb-12">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
           Your Pain Points Summary
         </h1>
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">

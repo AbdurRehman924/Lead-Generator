@@ -24,14 +24,14 @@ export default function LandingPage() {
               animate="animate"
               transition={{ staggerChildren: 0.1 }}
             >
-              <motion.p variants={fadeUp} className="text-xs sm:text-sm tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
+              <motion.p variants={fadeUp} className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
                 Free Infrastructure Health Check
               </motion.p>
-              <motion.h1 variants={fadeUp} className="text-2xl sm:text-3xl font-bold leading-tight text-gray-900 dark:text-white mb-3">
+              <motion.h1 variants={fadeUp} className="text-xl sm:text-2xl font-bold leading-tight text-gray-900 dark:text-white mb-3">
                 Score your infrastructure<br />
                 <span className="text-blue-600 dark:text-blue-400">in 2 minutes.</span>
               </motion.h1>
-              <motion.p variants={fadeUp} className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-5 font-medium">
+              <motion.p variants={fadeUp} className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-5 font-medium">
                 Answer 7 quick questions about your cloud, app, or deployment pipeline.
                 Get a scored report with a letter grade, category breakdown, and actionable fixes.
               </motion.p>
@@ -56,7 +56,7 @@ export default function LandingPage() {
                 <div className="mt-3">
                   <Link
                     href="/assess"
-                    className="group block w-full text-center text-xs sm:text-sm tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
+                    className="group block w-full text-center text-xs tracking-wider uppercase px-5 py-2.5 bg-blue-600 text-white pixel-btn border border-blue-700 shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8]"
                   >
                     Start Your Free Assessment <span className="inline-block text-base transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
                   </Link>

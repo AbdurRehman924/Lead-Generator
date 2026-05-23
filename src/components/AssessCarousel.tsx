@@ -49,8 +49,8 @@ function Card({
             <span className="inline-block text-base transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
           </span>
         </div>
-        <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{card.name}</h4>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-2">{card.tagline}</p>
+          <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-1">{card.name}</h4>
+          <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2">{card.tagline}</p>
         <div className="flex flex-wrap gap-1">
           {card.categories.map((c) => (
             <span key={c.id} className="text-[9px] px-1.5 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400">
@@ -66,7 +66,7 @@ function Card({
 export function AssessCarousel() {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
-  const pauseTimer = useRef<ReturnType<typeof setTimeout>>();
+  const pauseTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const pause = useCallback(() => {
