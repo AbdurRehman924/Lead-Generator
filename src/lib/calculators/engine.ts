@@ -7,22 +7,22 @@ export interface Answer {
 
 const categoryQuestionMap: Record<string, Record<string, string[]>> = {
   cloud: {
-    cost: ["monthly_spend", "cost_tracking", "infra_as_code"],
-    security: ["security", "backups"],
-    reliability: ["backups", "infra_as_code", "ci_cd"],
-    monitoring: ["monitoring", "ci_cd"],
+    cost: ["surprise_bills", "cloud_waste"],
+    security: ["breach_detection", "s3_visibility"],
+    reliability: ["recovery_time", "backup_tested"],
+    monitoring: ["outage_discovery", "infra_visibility"],
   },
   fullstack: {
-    foundation: ["authentication", "payments"],
-    experience: ["performance", "mobile", "seo"],
-    growth: ["payments", "admin", "seo"],
-    quality: ["testing", "performance"],
+    foundation: ["onboarding_friction", "money_readiness"],
+    experience: ["user_complaints", "mobile_quality"],
+    growth: ["search_visibility", "user_dropoff"],
+    quality: ["deploy_confidence", "bug_resolution"],
   },
   pipeline: {
-    speed: ["deploy_frequency", "deploy_process"],
-    quality_gates: ["testing", "rollback", "staging"],
-    observability: ["monitoring", "deploy_frequency"],
-    process: ["docs", "rollback", "staging"],
+    speed: ["time_to_prod", "panic_deploy"],
+    quality_gates: ["broken_test_block", "rollback_speed"],
+    observability: ["deploy_health", "deploy_audit"],
+    process: ["bus_factor", "manual_steps"],
   },
 };
 

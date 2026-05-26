@@ -9,7 +9,7 @@ export default function AssessPage() {
           An honest look at your infrastructure.
         </h1>
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-8">
-          Pick a calculator. Answer 7 questions. Know what&apos;s working. Fix what isn&apos;t.
+          Pick a calculator. Answer a few questions. Know what&apos;s working. Fix what isn&apos;t.
         </p>
 
         <div className="grid gap-4">
