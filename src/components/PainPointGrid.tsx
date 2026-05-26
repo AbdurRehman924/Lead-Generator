@@ -97,7 +97,7 @@ export function PainPointGrid() {
                   <div className="flex-1 min-w-0 flex">
                     <button
                       onClick={() => toggleGroupSelect(g)}
-                      className={`flex-1 flex items-start justify-start gap-2 px-2 py-1 cursor-pointer transition-colors ${count > 0 ? "bg-red-50 dark:bg-red-900/20" : "hover:bg-blue-100 dark:hover:bg-blue-950"}`}
+                       className={`flex-1 flex items-start justify-start gap-2 px-2 py-2 cursor-pointer transition-colors ${count > 0 ? "bg-red-50 dark:bg-red-900/20" : "hover:bg-blue-100 dark:hover:bg-blue-950"}`}
                     >
                       <span
                         className={`shrink-0 w-3.5 h-3.5 flex items-center justify-center border text-[8px] font-bold ${count > 0 ? "bg-red-500 border-red-500 text-white" : "border-gray-400 dark:border-gray-500 text-transparent"}`}
@@ -165,7 +165,7 @@ export function PainPointGrid() {
                                 }`}
                               />
                             )}
-                            <div className="flex flex-col py-1 min-w-0">
+                              <div className="flex flex-col py-1.5 min-w-0">
                               <span
                                 className={`text-xs sm:text-sm font-bold tracking-wider ${isSel ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"}`}
                               >
