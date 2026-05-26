@@ -41,11 +41,7 @@ const worstCategoryMessages: Record<string, string> = {
 };
 
 function getWorstCategory(result: CalculatorResult) {
-  let worst = result.categories[0];
-  for (const c of result.categories) {
-    if (c.percentage < worst.percentage) worst = c;
-  }
-  return worst;
+  return result.categories.reduce((a, b) => (a.percentage < b.percentage ? a : b));
 }
 
 function Blocks({ pct, size }: { pct: number; size: "sm" | "lg" }) {
@@ -93,7 +89,7 @@ export function ReportCard({ result }: { result: CalculatorResult }) {
           <span className="text-sm text-gray-400">· {result.percentage}%</span>
         </div>
 
-        <div className="w-full mb-1">
+        <div className="mb-1">
           <Blocks pct={result.percentage} size="lg" />
         </div>
 
@@ -112,7 +108,7 @@ export function ReportCard({ result }: { result: CalculatorResult }) {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2, delay: 0.04 * i }}
             >
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center mb-1">
                 <span className="text-xs font-bold text-gray-900 dark:text-white">{cat.label}</span>
               </div>
               <div className="flex items-center gap-2">
