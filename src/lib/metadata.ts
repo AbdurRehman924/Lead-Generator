@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "ask.artariq",
-  tagline: "Free infrastructure audits. Honest fixes.",
+  tagline: "Benchmark your intuition.",
   description:
-    "7 questions. 2 minutes. Get an honest infrastructure report with specific fixes — ranked by impact. No fluff, no sales pitch.",
+    "How healthy is your infrastructure, really? You think it's fine. 8 questions. Pick cloud, fullstack, or pipeline. Let's find out.",
 };
 
