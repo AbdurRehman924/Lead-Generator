@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { GridBg } from "@/components/GridBg";
 import { PainPointGrid } from "@/components/PainPointGrid";
 import { AssessCarousel } from "@/components/AssessCarousel";
@@ -11,7 +12,14 @@ const fadeUp = {
   animate: { opacity: 1, y: 0 },
 };
 
+const labels: Record<string, string> = {
+  cloud: "Cloud Costs",
+  fullstack: "Software ROI",
+  pipeline: "Software Delivery Lifecycle",
+};
+
 export default function LandingPage() {
+  const [calcId, setCalcId] = useState("cloud");
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950 overflow-x-hidden">
       <main className="flex-1 flex flex-col">
@@ -24,11 +32,8 @@ export default function LandingPage() {
               animate="animate"
               transition={{ staggerChildren: 0.1 }}
             >
-              <motion.p variants={fadeUp} className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
-                Infrastructure Sanity Check
-              </motion.p>
               <motion.h1 variants={fadeUp} className="text-lg sm:text-xl font-bold leading-tight text-gray-900 dark:text-white mb-3">
-                Benchmark your intuition. How healthy is your infrastructure, really?<br />
+                Benchmark your intuition. All that investment in software — is it actually delivering?<br />
                 <span className="text-blue-600 dark:text-blue-400">You think it&apos;s fine. Let&apos;s find out.</span>
               </motion.h1>
               <motion.p variants={fadeUp} className="text-xs sm:text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-5 font-medium">
@@ -37,21 +42,35 @@ export default function LandingPage() {
 
               <motion.div variants={fadeUp} className="flex flex-wrap gap-2 sm:gap-3 mb-5 text-xs">
                 <div className="flex-1 min-w-[6rem] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-2 sm:p-3 shadow-[2px_2px_0px_#e5e7eb] dark:shadow-[2px_2px_0px_#374151]">
-                  <p className="font-bold text-gray-900 dark:text-white">8</p>
+                  <p className="font-bold text-gray-900 dark:text-white">Eight</p>
                   <p className="text-gray-500 dark:text-gray-400">Questions</p>
                 </div>
                 <div className="flex-1 min-w-[6rem] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-2 sm:p-3 shadow-[2px_2px_0px_#e5e7eb] dark:shadow-[2px_2px_0px_#374151]">
-                  <p className="font-bold text-gray-900 dark:text-white">3</p>
+                  <p className="font-bold text-gray-900 dark:text-white">Three</p>
                   <p className="text-gray-500 dark:text-gray-400">Tracks</p>
                 </div>
                 <div className="flex-1 min-w-[6rem] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-2 sm:p-3 shadow-[2px_2px_0px_#e5e7eb] dark:shadow-[2px_2px_0px_#374151]">
-                  <p className="font-bold text-gray-900 dark:text-white">1</p>
-                  <p className="text-gray-500 dark:text-gray-400">Free Report</p>
+                  <p className="font-bold text-gray-900 dark:text-white">Critical</p>
+                  <p className="text-gray-500 dark:text-gray-400">Evaluations</p>
                 </div>
               </motion.div>
 
               <motion.div variants={fadeUp} className="mt-auto">
-                <AssessCarousel />
+                <motion.p className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold mb-3">
+                  Evaluate your{" "}
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={calcId}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.05 }}
+                      className="text-gray-900 dark:text-white"
+                    >
+                      {labels[calcId] || "Stack"}
+                    </motion.span>
+                  </AnimatePresence>
+                </motion.p>
+                <AssessCarousel onIndexChange={setCalcId} />
                 <div className="mt-3">
                   <Link
                     href="/assess"

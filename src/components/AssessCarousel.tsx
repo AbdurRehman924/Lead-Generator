@@ -42,16 +42,14 @@ function Card({
           className="group relative flex flex-col bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-3 sm:p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] h-full hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
       >
         <div className="flex items-start justify-between mb-1">
-            <p className="text-[10px] sm:text-xs tracking-wider uppercase text-blue-600 font-semibold">
-              {card.categories.length} dimensions
-            </p>
-          <span className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold">
+          <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white">{card.name}</h4>
+          <span className="text-xs tracking-wider uppercase text-blue-600 dark:text-blue-400 font-bold shrink-0">
             <span className="inline-block text-base transition-all duration-300 group-hover:scale-[2] group-hover:translate-x-1">→</span>
           </span>
         </div>
-          <h4 className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-1">{card.name}</h4>
           <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-2">{card.tagline}</p>
-          <div className="flex flex-wrap gap-1">
+          <div className="flex flex-wrap items-center gap-1">
+            <span className="text-[9px] text-gray-900 dark:text-white uppercase tracking-wider">Parameters:</span>
           {card.categories.map((c) => (
             <span key={c.id} className="text-[9px] px-1.5 py-0.5 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400">
               {c.label}
@@ -63,7 +61,7 @@ function Card({
   );
 }
 
-export function AssessCarousel() {
+export function AssessCarousel({ onIndexChange }: { onIndexChange?: (id: string) => void }) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const pauseTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -77,17 +75,23 @@ export function AssessCarousel() {
 
   const next = useCallback(() => {
     setIdx((i) => (i + 1) % list.length);
-    pause();
-  }, [pause]);
+  }, []);
 
   const prev = useCallback(() => {
     setIdx((i) => (i - 1 + list.length) % list.length);
-    pause();
-  }, [pause]);
+  }, []);
+
+  useEffect(() => {
+    onIndexChange?.(list[idx].id);
+  }, [idx, onIndexChange]);
+
+  useEffect(() => {
+    onIndexChange?.(list[idx].id);
+  }, [idx, onIndexChange]);
 
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(next, 4000);
+    const timer = setInterval(next, 2500);
     return () => clearInterval(timer);
   }, [next, paused]);
 
@@ -123,8 +127,7 @@ export function AssessCarousel() {
           >
             {/* Card behind */}
             <div className="absolute inset-0 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-3 sm:p-5 shadow-[2px_2px_0px_#e5e7eb] dark:shadow-[2px_2px_0px_#374151] opacity-50 scale-[0.94] translate-y-0.5 pointer-events-none">
-              <p className="text-[10px] tracking-wider uppercase text-gray-300 dark:text-gray-600">{behind.categories.length} dimensions</p>
-              <h4 className="text-sm font-bold text-gray-300 dark:text-gray-600 mt-1">{behind.name}</h4>
+              <h4 className="text-sm font-bold text-gray-300 dark:text-gray-600">{behind.name}</h4>
             </div>
 
             {/* Top card — swipeable */}
