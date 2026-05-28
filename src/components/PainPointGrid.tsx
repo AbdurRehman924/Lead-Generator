@@ -106,14 +106,15 @@ export function PainPointGrid() {
             "linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 8px), transparent 100%)",
         }}
       >
-        <div className="pr-4">
+        <div className="pr-4 pt-4">
           <div className="flex items-start justify-between gap-x-2 px-2 py-1 mb-2 border-b border-gray-200 dark:border-gray-700 flex-wrap relative">
             <div className="relative" ref={menuRef}>
               <button
                 onClick={() => setShowFieldMenu((v) => !v)}
-                className="font-bold tracking-wider text-xs cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="font-bold tracking-wider text-xs cursor-pointer transition-colors flex items-center gap-1.5 px-2 py-0.5 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200"
               >
-                ▼ {fieldOptions.find((f) => f.id === field)?.label || "All Problems"}
+                {fieldOptions.find((f) => f.id === field)?.label || "All Problems"}
+                <span className={`inline-block transition-transform duration-200 ${showFieldMenu ? "rotate-180" : ""}`}>▼</span>
               </button>
               {showFieldMenu && (
                 <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg z-20 min-w-[140px]">
