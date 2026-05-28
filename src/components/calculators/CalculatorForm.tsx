@@ -6,6 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { CalculatorConfig } from "@/lib/calculators/config";
 import type { Answer } from "@/lib/calculators/engine";
 
+const slideVariants = {
+  enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
+};
+
 export function CalculatorForm({ config }: { config: CalculatorConfig }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -56,12 +62,6 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
 
   const currentAnswer = answers.find((a) => a.questionId === question.id);
 
-  const variants = {
-    enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
-  };
-
   return (
     <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
       <div className="flex items-center gap-2 mb-4">
@@ -75,7 +75,7 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
         <motion.div
           key={step}
           custom={direction}
-          variants={variants}
+          variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"

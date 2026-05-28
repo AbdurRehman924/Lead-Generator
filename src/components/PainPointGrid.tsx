@@ -9,7 +9,6 @@ export function PainPointGrid() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [techOpen, setTechOpen] = useState<Set<string>>(new Set());
   const [dark, setDark] = useState(false);
-  const groups = groupsBusiness;
 
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -77,10 +76,8 @@ export function PainPointGrid() {
           </span>
         </div>
         <div className="pb-2">
-          {groups.map((g, gi) => {
-            const isOpen = expanded.has(g.id);
-            const count = groupSelectionCount(g);
-            const isLast = gi === groups.length - 1;
+          {groupsBusiness.map((g, gi) => {
+            const isLast = gi === groupsBusiness.length - 1;
             return (
               <div key={g.id}>
                 <div className="flex">
@@ -97,15 +94,15 @@ export function PainPointGrid() {
                   <div className="flex-1 min-w-0 flex">
                     <button
                       onClick={() => toggleGroupSelect(g)}
-                       className={`flex-1 flex items-start justify-start gap-2 px-2 py-2 cursor-pointer transition-colors ${count > 0 ? "bg-red-50 dark:bg-red-900/20" : "hover:bg-blue-100 dark:hover:bg-blue-950"}`}
+                       className={`flex-1 flex items-start justify-start gap-2 px-2 py-2 cursor-pointer transition-colors ${groupSelectionCount(g) > 0 ? "bg-red-50 dark:bg-red-900/20" : "hover:bg-blue-100 dark:hover:bg-blue-950"}`}
                     >
                       <span
-                        className={`shrink-0 w-3.5 h-3.5 flex items-center justify-center border text-[8px] font-bold ${count > 0 ? "bg-red-500 border-red-500 text-white" : "border-gray-400 dark:border-gray-500 text-transparent"}`}
+                        className={`shrink-0 w-3.5 h-3.5 flex items-center justify-center border text-[8px] font-bold ${groupSelectionCount(g) > 0 ? "bg-red-500 border-red-500 text-white" : "border-gray-400 dark:border-gray-500 text-transparent"}`}
                       >
-                        {count > 0 ? "✓" : ""}
+                        {groupSelectionCount(g) > 0 ? "✓" : ""}
                       </span>
                       <span
-                        className={`text-xs text-left font-bold tracking-wider ${count > 0 ? "text-red-600 dark:text-red-400" : dark ? "text-gray-400" : "text-gray-500"}`}
+                        className={`text-xs text-left font-bold tracking-wider ${groupSelectionCount(g) > 0 ? "text-red-600 dark:text-red-400" : dark ? "text-gray-400" : "text-gray-500"}`}
                       >
                         {g.label}
                       </span>
@@ -113,18 +110,18 @@ export function PainPointGrid() {
                     <button
                       onClick={() => toggleSet(expanded, setExpanded, g.id)}
                       className="shrink-0 w-6 flex items-start justify-center pt-1 cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-950 transition-colors"
-                      aria-label={isOpen ? "Collapse" : "Expand"}
+                      aria-label={expanded.has(g.id) ? "Collapse" : "Expand"}
                     >
                       <span
                         className={`text-xs ${dark ? "text-gray-600" : "text-gray-400"}`}
                       >
-                        {isOpen ? "▲" : "▼"}
+                        {expanded.has(g.id) ? "▲" : "▼"}
                       </span>
                     </button>
                   </div>
                 </div>
 
-                {isOpen && (
+                {expanded.has(g.id) && (
                   <div>
                     <div
                       className="px-1 pb-1"

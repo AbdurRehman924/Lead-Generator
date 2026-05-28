@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { painPointsTemplate } from "@/lib/email-templates";
@@ -9,6 +9,7 @@ function AnalyzeContent() {
   const sp = useSearchParams();
   const pains = sp.get("pains")?.split(",").filter(Boolean) ?? [];
   const fullTemplate = painPointsTemplate(pains);
+  const textRef = useRef<HTMLTextAreaElement>(null);
 
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
@@ -33,6 +34,7 @@ function AnalyzeContent() {
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 font-mono">Copy this — and feel free to add any other issues you want fixed:</p>
               <div className="relative">
                 <textarea
+                  ref={textRef}
                   readOnly
                   rows={8}
                   className="w-full text-sm text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-3 resize-none"
@@ -40,11 +42,8 @@ function AnalyzeContent() {
                 />
                 <button
                   onClick={() => {
-                    const textarea = document.querySelector("textarea");
-                    if (textarea) {
-                      textarea.select();
-                      navigator.clipboard.writeText(fullTemplate);
-                    }
+                    textRef.current?.select();
+                    navigator.clipboard.writeText(fullTemplate);
                   }}
                   className="absolute top-2 right-2 text-[10px] sm:text-xs tracking-wider uppercase px-2 py-1 bg-blue-600 text-white pixel-btn shadow-[2px_2px_0px_#1d4ed8] hover:shadow-[4px_4px_0px_#1d4ed8] cursor-pointer"
                 >

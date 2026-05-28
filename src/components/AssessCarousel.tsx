@@ -65,7 +65,6 @@ export function AssessCarousel({ onIndexChange }: { onIndexChange?: (id: string)
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const pauseTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const pause = useCallback(() => {
     setPaused(true);
@@ -80,10 +79,6 @@ export function AssessCarousel({ onIndexChange }: { onIndexChange?: (id: string)
   const prev = useCallback(() => {
     setIdx((i) => (i - 1 + list.length) % list.length);
   }, []);
-
-  useEffect(() => {
-    onIndexChange?.(list[idx].id);
-  }, [idx, onIndexChange]);
 
   useEffect(() => {
     onIndexChange?.(list[idx].id);
@@ -121,7 +116,6 @@ export function AssessCarousel({ onIndexChange }: { onIndexChange?: (id: string)
 
         <div className="flex-1 sm:mx-3">
           <div
-            ref={containerRef}
             className="relative w-full"
             style={{ height: "11rem", minHeight: "176px" }}
           >
