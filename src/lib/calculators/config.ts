@@ -23,7 +23,7 @@ export const calculators: Record<string, CalculatorConfig> = {
     id: "cloud",
     name: "Cloud Mathematician",
     tagline: "Your cloud bill is probably higher than it should be. Let's find where.",
-    description: "8 questions to find where your cloud spend is quietly leaking, your security has gaps you haven't noticed, and your infrastructure is one outage away from costing you customers.",
+    description: "8 questions to find where your cloud spend is quietly leaking, your security has gaps you haven't noticed, and your infrastructure is one outage away from costing you users.",
     categories: [
       { id: "cost", label: "Cost Control" },
       { id: "security", label: "Security" },
@@ -94,7 +94,7 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
       {
         id: "outage_discovery",
-        label: "How many customers have left because your website or app was too slow?",
+        label: "How many users have left because your website or app was too slow?",
         options: [
           { label: "None — we monitor performance", value: "none", score: 5 },
           { label: "A few, but we fixed it", value: "few", score: 3 },
@@ -119,7 +119,7 @@ export const calculators: Record<string, CalculatorConfig> = {
     id: "fullstack",
     name: "FullStack Alchemist",
     tagline: "The software you paid for — is it actually earning its keep?",
-    description: "You invested in software to grow your business. Is it actually delivering — or is it costing you more in frustration, lost customers, and wasted time than it's worth? 8 questions to find out.",
+    description: "You invested in software to grow your business. Is it actually delivering — or is it costing you more in frustration, lost users, and wasted time than it's worth? 8 questions to find out.",
     categories: [
       { id: "foundation", label: "App Foundation" },
       { id: "experience", label: "User Experience" },
@@ -246,11 +246,11 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
       {
         id: "broken_test_block",
-        label: "Can your team catch a mistake before it reaches your customers — or does it slip through?",
+        label: "Can your team catch a mistake before it reaches your users — or does it slip through?",
         options: [
           { label: "Yes — automated checks catch everything", value: "blocked", score: 5 },
           { label: "Sometimes — manual review catches most", value: "manual_stop", score: 3 },
-          { label: "Mistakes reach customers regularly", value: "slips",     score: 0 },
+          { label: "Mistakes reach users regularly", value: "slips",     score: 0 },
           { label: "We don't have checks in place", value: "no_tests",     score: -1 },
         ],
       },

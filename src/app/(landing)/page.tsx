@@ -20,7 +20,7 @@ function CollapsibleSection({
   children: React.ReactNode;
   titleClass?: string;
 }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   return (
     <div className="mb-6 max-w-2xl mx-auto">
       <button

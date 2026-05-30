@@ -15,7 +15,7 @@ export interface PainGroup {
 export const groupsBusiness: PainGroup[] = [
   {
     id: "monitoring",
-    label: "Your customers shouldn't have to tell you something's broken",
+    label: "Your users shouldn't have to tell you something's broken",
     description: "Every minute you don't know, someone else is already complaining",
     children: [
       { id: "monitor", label: "Downtime went unnoticed for hours — no alert caught it", severity: "critical", tech: "Prometheus, Grafana" },
@@ -56,7 +56,7 @@ export const groupsBusiness: PainGroup[] = [
   },
   {
     id: "building",
-    label: "Bugs that reach your customers are bugs you're paying for twice",
+    label: "Bugs that reach your users are bugs you're paying for twice",
     description: "If users find it first, you've already lost their trust",
     children: [
       { id: "test", label: "Bugs reach production because there's no automated testing", severity: "critical", tech: "Jest, Playwright, k6" },
@@ -114,7 +114,7 @@ export const groupsBusiness: PainGroup[] = [
       { id: "design", label: "No design system — every screen looks inconsistent", severity: "warning", tech: "Figma, Lucidchart" },
     ],
   },
-  { id: "growth",     label: "If Google can't find you, neither can your customers", description: "SEO, analytics, and business visibility", children: [
+  { id: "growth",     label: "If Google can't find you, neither can your users", description: "SEO, analytics, and business visibility", children: [
     { id: "seo", label: "Nobody can find us on Google", severity: "critical", tech: "Lighthouse, Schema.org" },
     { id: "analytics", label: "No user behavior tracking — decisions are made blind", severity: "warning", tech: "GA, Plausible, Mixpanel" },
   ] },
@@ -193,9 +193,9 @@ export const painLabelsTech: Record<string, string> = {
 };
 
 export const parentLabelsBusiness: Record<string, string> = {
-  monitor: "Your customers shouldn't have to tell you something's broken",
-  incident: "Your customers shouldn't have to tell you something's broken",
-  alert: "Your customers shouldn't have to tell you something's broken",
+  monitor: "Your users shouldn't have to tell you something's broken",
+  incident: "Your users shouldn't have to tell you something's broken",
+  alert: "Your users shouldn't have to tell you something's broken",
   deploy: "New updates shouldn't make you nervous",
   rollback: "New updates shouldn't make you nervous",
   verify: "New updates shouldn't make you nervous",
@@ -206,9 +206,9 @@ export const parentLabelsBusiness: Record<string, string> = {
   staging: "Your competitors ship faster. Here's why.",
   build: "Your competitors ship faster. Here's why.",
   registry: "Your competitors ship faster. Here's why.",
-  test: "Bugs that reach your customers are bugs you're paying for twice",
-  bug: "Bugs that reach your customers are bugs you're paying for twice",
-  ci: "Bugs that reach your customers are bugs you're paying for twice",
+  test: "Bugs that reach your users are bugs you're paying for twice",
+  bug: "Bugs that reach your users are bugs you're paying for twice",
+  ci: "Bugs that reach your users are bugs you're paying for twice",
   slow: "Every second of slowness is a customer who might leave",
   local: "Every second of slowness is a customer who might leave",
   cascade: "Every second of slowness is a customer who might leave",
@@ -224,6 +224,6 @@ export const parentLabelsBusiness: Record<string, string> = {
   plan: "Too many ideas, too few shipped — sound familiar?",
   idea: "Too many ideas, too few shipped — sound familiar?",
   design: "Too many ideas, too few shipped — sound familiar?",
-  seo: "If Google can't find you, neither can your customers",
-  analytics: "If Google can't find you, neither can your customers",
+  seo: "If Google can't find you, neither can your users",
+  analytics: "If Google can't find you, neither can your users",
 };
