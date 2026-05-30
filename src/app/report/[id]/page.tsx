@@ -75,9 +75,7 @@ function ReportContent() {
               <li>I send back 3 specific fixes — ranked by impact</li>
               <li>You decide if you want my help implementing them</li>
             </ol>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">
-              No cost. No commitment. Just an honest opinion from someone who spends their days fixing this stuff.
-            </p>
+
             <a
               href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(`Infrastructure Analysis — ${config.name} (${result.grade})`)}&body=${encodeURIComponent(summaryText)}`}
               className="inline-block text-xs tracking-wider uppercase px-4 py-2 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8] cursor-pointer"

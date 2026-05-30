@@ -15,13 +15,6 @@ function AnalyzeContent() {
   return (
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 max-w-2xl mx-auto w-full px-6 pt-16 pb-12">
-        <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-          Your Pain Points Summary
-        </h1>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-          Here&apos;s a summary of what&apos;s hurting. Email it to me and I&apos;ll send back a prioritised action plan — which problem to tackle first, rough effort, and what a fix looks like.
-        </p>
-
         {pains.length === 0 ? (
           <p className="text-sm text-gray-500 dark:text-gray-400">
             No pain points selected.{" "}
@@ -31,7 +24,14 @@ function AnalyzeContent() {
           </p>
         ) : (
           <>
-            <div className="border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] mb-6">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            Your Pain Points Summary
+          </h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
+            Here&apos;s a summary of what&apos;s hurting. Email it to me and I&apos;ll send back a prioritised action plan — which problem to tackle first, rough effort, and what a fix looks like.
+          </p>
+
+          <div className="border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] mb-6">
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-2 font-mono">Copy this — and feel free to add any other issues you want fixed:</p>
               <div className="relative">
                 <textarea
@@ -63,9 +63,6 @@ function AnalyzeContent() {
                 <li>I send back 3 specific fixes — ranked by impact</li>
                 <li>You decide if you want my help implementing them</li>
               </ol>
-              <p className="text-xs text-gray-400 dark:text-gray-500 mb-4">
-                No cost. No commitment.
-              </p>
               <a
                 href={`mailto:${siteConfig.email}?subject=Infrastructure Pain Points Analysis&body=${encodeURIComponent(fullTemplate)}`}
                 className="inline-block text-xs tracking-wider uppercase px-4 py-2 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8] cursor-pointer"
