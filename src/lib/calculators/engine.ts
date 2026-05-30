@@ -44,7 +44,7 @@ export interface CalculatorResult {
 }
 
 function getGrade(percentage: number): string {
-  if (percentage >= 90) return "A";
+  if (percentage >= 95) return "A";
   if (percentage >= 75) return "B";
   if (percentage >= 55) return "C";
   if (percentage >= 35) return "D";
@@ -85,13 +85,13 @@ export function calculateScore(configId: string, answers: Answer[]): CalculatorR
   const categories: CategoryScore[] = config.categories.map((cat) => {
     const score = getCategoryScore(config, cat.id, answers);
     const maxScore = getCategoryMaxScore(config, cat.id);
-    const percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+    const percentage = maxScore > 0 ? Math.max(0, Math.round((score / maxScore) * 100)) : 0;
     return { id: cat.id, label: cat.label, score, maxScore, percentage };
   });
 
   const totalScore = categories.reduce((sum, c) => sum + c.score, 0);
   const totalMax = categories.reduce((sum, c) => sum + c.maxScore, 0);
-  const percentage = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
+  const percentage = totalMax > 0 ? Math.max(0, Math.round((totalScore / totalMax) * 100)) : 0;
 
   return {
     calculatorId: configId,

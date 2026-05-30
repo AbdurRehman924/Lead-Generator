@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import type { CalculatorConfig } from "@/lib/calculators/config";
@@ -12,6 +12,15 @@ const slideVariants = {
   exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0 }),
 };
 
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export function CalculatorForm({ config }: { config: CalculatorConfig }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
@@ -19,7 +28,12 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const advanceRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  const question = config.questions[step];
+  const questions = useMemo(
+    () => config.questions.map((q) => ({ ...q, options: shuffle(q.options) })),
+    [config.questions],
+  );
+
+  const question = questions[step];
   const isLast = step === config.questions.length - 1;
   const isComplete = answers.length === config.questions.length;
 

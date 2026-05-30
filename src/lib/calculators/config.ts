@@ -37,8 +37,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "No — we audit regularly", value: "audit", score: 5 },
           { label: "Probably, but it's not much", value: "some", score: 3 },
-          { label: "Yes — I'm sure there's waste", value: "yes", score: 1 },
-          { label: "I have no idea", value: "dont_know", score: 0 },
+          { label: "Yes — I'm sure there's waste", value: "yes",     score: 0 },
+          { label: "I have no idea", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -47,8 +47,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "This month", value: "month", score: 5 },
           { label: "This quarter", value: "quarter", score: 3 },
-          { label: "Last year", value: "year", score: 1 },
-          { label: "Never — I don't track it closely", value: "never", score: 0 },
+          { label: "Last year", value: "year",     score: 0 },
+          { label: "Never — I don't track it closely", value: "never",     score: -1 },
         ],
       },
       {
@@ -57,9 +57,9 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Minutes — we have redundancies", value: "minutes", score: 5 },
           { label: "An hour or so", value: "hour", score: 3 },
-          { label: "A few hours", value: "hours", score: 2 },
-          { label: "A day or more — and that scares me", value: "day", score: 1 },
-          { label: "I honestly don't know", value: "dont_know", score: 0 },
+          { label: "A few hours", value: "hours",     score: 0 },
+          { label: "A day or more — and that scares me", value: "day",     score: 0 },
+          { label: "I honestly don't know", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -68,8 +68,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — we have strong security", value: "yes", score: 5 },
           { label: "I'm fairly confident", value: "confident", score: 3 },
-          { label: "I hope so, but I'm not sure", value: "unsure", score: 1 },
-          { label: "I have no idea", value: "dont_know", score: 0 },
+          { label: "I hope so, but I'm not sure", value: "unsure",     score: 0 },
+          { label: "I have no idea", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -78,8 +78,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — full backup plan in place", value: "yes", score: 5 },
           { label: "Mostly — we'd manage", value: "mostly", score: 3 },
-          { label: "It would be a mess", value: "mess", score: 1 },
-          { label: "We'd be dead in the water", value: "dead", score: 0 },
+          { label: "It would be a mess", value: "mess",     score: 0 },
+          { label: "We'd be dead in the water", value: "dead",     score: -1 },
         ],
       },
       {
@@ -88,8 +88,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "No — we have backups we've tested", value: "tested", score: 5 },
           { label: "We have backups, never tested restore", value: "untested", score: 3 },
-          { label: "We might have backups somewhere", value: "maybe", score: 1 },
-          { label: "I don't know — and that worries me", value: "dont_know", score: 0 },
+          { label: "We might have backups somewhere", value: "maybe",     score: 0 },
+          { label: "I don't know — and that worries me", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -98,8 +98,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "None — we monitor performance", value: "none", score: 5 },
           { label: "A few, but we fixed it", value: "few", score: 3 },
-          { label: "Probably some — I don't track it", value: "some", score: 1 },
-          { label: "I have no way of knowing", value: "dont_know", score: 0 },
+          { label: "Probably some — I don't track it", value: "some",     score: 0 },
+          { label: "I have no way of knowing", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -108,8 +108,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — full visibility", value: "full", score: 5 },
           { label: "Mostly — I know the big items", value: "mostly", score: 3 },
-          { label: "Roughly — there are blind spots", value: "rough", score: 1 },
-          { label: "Not really — it's a black box", value: "none", score: 0 },
+          { label: "Roughly — there are blind spots", value: "rough",     score: 0 },
+          { label: "Not really — it's a black box", value: "none",     score: -1 },
         ],
       },
     ],
@@ -133,8 +133,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — it's intuitive", value: "smooth", score: 5 },
           { label: "Mostly, but some get stuck", value: "stuck", score: 3 },
-          { label: "Someone usually has to walk them through it", value: "manual", score: 1 },
-          { label: "I haven't actually tested that", value: "dont_know", score: 0 },
+          { label: "Someone usually has to walk them through it", value: "manual",     score: 0 },
+          { label: "I haven't actually tested that", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -143,8 +143,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — it delivers exactly what I expected", value: "yes", score: 5 },
           { label: "Mostly — but there are gaps", value: "mostly", score: 3 },
-          { label: "Not really — it's missing key things", value: "no", score: 1 },
-          { label: "I'm not sure what it's supposed to do", value: "dont_know", score: 0 },
+          { label: "Not really — it's missing key things", value: "no",     score: 0 },
+          { label: "I'm not sure what it's supposed to do", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -152,10 +152,10 @@ export const calculators: Record<string, CalculatorConfig> = {
         label: "When was the last time someone told you it was too slow or annoying to use?",
         options: [
           { label: "Never — people seem happy", value: "never", score: 5 },
-          { label: "Months ago", value: "months", score: 4 },
-          { label: "This month", value: "month", score: 2 },
-          { label: "This week", value: "week", score: 1 },
-          { label: "I don't ask — and nobody's volunteered", value: "dont_track", score: 0 },
+          { label: "Months ago", value: "months",     score: 3 },
+          { label: "This month", value: "month",     score: 0 },
+          { label: "This week", value: "week",     score: 0 },
+          { label: "I don't ask — and nobody's volunteered", value: "dont_track",     score: -1 },
         ],
       },
       {
@@ -164,8 +164,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "It scales with us — no issues", value: "scales", score: 5 },
           { label: "It works for now, but we're pushing limits", value: "straining", score: 3 },
-          { label: "It's already struggling to keep up", value: "struggling", score: 1 },
-          { label: "I don't know how much more it can handle", value: "dont_know", score: 0 },
+          { label: "It's already struggling to keep up", value: "struggling",     score: 0 },
+          { label: "I don't know how much more it can handle", value: "dont_know",     score: -1 },
         ],
       },
       {
@@ -174,8 +174,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — clear insights, easy to understand", value: "clear", score: 5 },
           { label: "It gives me data, I figure out the rest", value: "data", score: 3 },
-          { label: "It's just raw numbers with no context", value: "raw", score: 1 },
-          { label: "I don't get any reporting from it", value: "none", score: 0 },
+          { label: "It's just raw numbers with no context", value: "raw",     score: 0 },
+          { label: "I don't get any reporting from it", value: "none",     score: -1 },
         ],
       },
       {
@@ -184,8 +184,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — we track that and fix it", value: "yes", score: 5 },
           { label: "I have a rough idea", value: "rough", score: 3 },
-          { label: "No, but I want to know", value: "want", score: 1 },
-          { label: "We don't track usage at all", value: "none", score: 0 },
+          { label: "No, but I want to know", value: "want",     score: 0 },
+          { label: "We don't track usage at all", value: "none",     score: -1 },
         ],
       },
       {
@@ -194,8 +194,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "No — changes are quick and predictable", value: "quick", score: 5 },
           { label: "Sometimes — simple changes are fast", value: "sometimes", score: 3 },
-          { label: "Yes — everything takes longer than expected", value: "slow", score: 1 },
-          { label: "I dread asking for changes at this point", value: "dread", score: 0 },
+          { label: "Yes — everything takes longer than expected", value: "slow",     score: 0 },
+          { label: "I dread asking for changes at this point", value: "dread",     score: -1 },
         ],
       },
       {
@@ -204,8 +204,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Hours — we'd catch it fast", value: "hours", score: 5 },
           { label: "A day — we'd manage", value: "day", score: 3 },
-          { label: "A few days — it would be painful", value: "days", score: 1 },
-          { label: "I don't know — and that worries me", value: "dont_know", score: 0 },
+          { label: "A few days — it would be painful", value: "days",     score: 0 },
+          { label: "I don't know — and that worries me", value: "dont_know",     score: -1 },
         ],
       },
     ],
@@ -229,8 +229,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Hours — fast and smooth", value: "hours", score: 5 },
           { label: "A day or two", value: "days", score: 3 },
-          { label: "A week or more", value: "week", score: 1 },
-          { label: "I don't actually measure it", value: "dont_measure", score: 0 },
+          { label: "A week or more", value: "week",     score: 0 },
+          { label: "I don't actually measure it", value: "dont_measure",     score: -1 },
         ],
       },
       {
@@ -238,10 +238,10 @@ export const calculators: Record<string, CalculatorConfig> = {
         label: "When was the last time a new update caused problems you had to scramble to fix?",
         options: [
           { label: "Never — updates are smooth", value: "never", score: 5 },
-          { label: "Months ago", value: "months", score: 4 },
-          { label: "This month", value: "month", score: 2 },
-          { label: "This week", value: "week", score: 1 },
-          { label: "Every update feels like a gamble", value: "always", score: 0 },
+          { label: "Months ago", value: "months",     score: 3 },
+          { label: "This month", value: "month",     score: 0 },
+          { label: "This week", value: "week",     score: 0 },
+          { label: "Every update feels like a gamble", value: "always",     score: -1 },
         ],
       },
       {
@@ -250,8 +250,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — automated checks catch everything", value: "blocked", score: 5 },
           { label: "Sometimes — manual review catches most", value: "manual_stop", score: 3 },
-          { label: "Mistakes reach customers regularly", value: "slips", score: 1 },
-          { label: "We don't have checks in place", value: "no_tests", score: 0 },
+          { label: "Mistakes reach customers regularly", value: "slips",     score: 0 },
+          { label: "We don't have checks in place", value: "no_tests",     score: -1 },
         ],
       },
       {
@@ -260,8 +260,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Minutes — one-click rollback", value: "minutes", score: 5 },
           { label: "An hour or so", value: "hour", score: 3 },
-          { label: "Half a day — we need to figure things out first", value: "half_day", score: 1 },
-          { label: "We don't have a way to undo", value: "none", score: 0 },
+          { label: "Half a day — we need to figure things out first", value: "half_day",     score: 0 },
+          { label: "We don't have a way to undo", value: "none",     score: -1 },
         ],
       },
       {
@@ -270,8 +270,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Automated checks confirm it immediately", value: "auto", score: 5 },
           { label: "I check in manually", value: "manual", score: 3 },
-          { label: "I wait to see if anyone complains", value: "wait", score: 1 },
-          { label: "I don't check — I assume it's fine", value: "ignore", score: 0 },
+          { label: "I wait to see if anyone complains", value: "wait",     score: 0 },
+          { label: "I don't check — I assume it's fine", value: "ignore",     score: -1 },
         ],
       },
       {
@@ -280,8 +280,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "Yes — everything is logged and clear", value: "full", score: 5 },
           { label: "Mostly — I could piece it together", value: "most", score: 3 },
-          { label: "Not really — it would be messy", value: "messy", score: 1 },
-          { label: "We don't track changes at all", value: "none", score: 0 },
+          { label: "Not really — it would be messy", value: "messy",     score: 0 },
+          { label: "We don't track changes at all", value: "none",     score: -1 },
         ],
       },
       {
@@ -290,8 +290,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "No — everything is documented and shared", value: "shared", score: 5 },
           { label: "Mostly — others could figure it out", value: "mostly", score: 3 },
-          { label: "It would be rough", value: "rough", score: 1 },
-          { label: "Yes — only one person knows how things work", value: "one", score: 0 },
+          { label: "It would be rough", value: "rough",     score: 0 },
+          { label: "Yes — only one person knows how things work", value: "one",     score: -1 },
         ],
       },
       {
@@ -300,8 +300,8 @@ export const calculators: Record<string, CalculatorConfig> = {
         options: [
           { label: "One person, few clicks — fully automated", value: "zero", score: 5 },
           { label: "One or two people, a few steps", value: "low", score: 3 },
-          { label: "Several people and approvals", value: "medium", score: 1 },
-          { label: "I'm not sure — it's different every time", value: "dont_know", score: 0 },
+          { label: "Several people and approvals", value: "medium",     score: 0 },
+          { label: "I'm not sure — it's different every time", value: "dont_know",     score: -1 },
         ],
       },
     ],
