@@ -2,13 +2,24 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { groupsBusiness, painLabelsTech, type PainGroup } from "@/lib/pain-points";
+import {
+  groupsBusiness,
+  painLabelsTech,
+  type PainGroup,
+} from "@/lib/pain-points";
 
 const fieldGroups: Record<string, string[]> = {
   all: groupsBusiness.map((g) => g.id),
   frontend: ["performance", "coding", "growth"],
   backend: ["building", "coding", "ops"],
-  fullstack: ["shipping", "building", "performance", "planning", "growth", "team"],
+  fullstack: [
+    "shipping",
+    "building",
+    "performance",
+    "planning",
+    "growth",
+    "team",
+  ],
   devops: ["monitoring", "deploying", "shipping", "ops"],
   cloud: ["monitoring", "security", "ops"],
   security: ["security"],
@@ -71,15 +82,14 @@ export function PainPointGrid() {
     });
   }, []);
 
-  const toggleSet = useCallback((
-    set: Set<string>,
-    setter: (s: Set<string>) => void,
-    id: string,
-  ) => {
-    const next = new Set(set);
-    next.has(id) ? next.delete(id) : next.add(id);
-    setter(next);
-  }, []);
+  const toggleSet = useCallback(
+    (set: Set<string>, setter: (s: Set<string>) => void, id: string) => {
+      const next = new Set(set);
+      next.has(id) ? next.delete(id) : next.add(id);
+      setter(next);
+    },
+    [],
+  );
 
   const groupSelectionCount = (group: PainGroup) =>
     group.children.filter((c) => selected.has(c.id)).length;
@@ -92,25 +102,33 @@ export function PainPointGrid() {
         <span className="text-red-500 dark:text-red-400">painpoints</span>
       </h2>
       <h3 className="text-xs text-gray-500 dark:text-gray-400 mb-4">
-        Find your problem below. It probably has a name — and a solution. These aren&apos;t just checkboxes. They&apos;re problems I&apos;ve already solved.
+        Select problems. Hit the button. Copy the message. Send it over —
+        let&apos;s talk.
       </h3>
 
       {/* Filter bar — outside scrollable area */}
-      <div className="flex items-start justify-between gap-x-2 px-2 py-1 mb-2 border-b border-gray-200 dark:border-gray-700 flex-wrap">
-        <div className="relative" ref={menuRef}>
+      <div className="flex items-start justify-between gap-x-2 px-2 py-1 mb-3 border-b border-gray-200 dark:border-gray-700 flex-wrap">
+        <div className="relative mb-2" ref={menuRef}>
           <button
             onClick={() => setShowFieldMenu((v) => !v)}
             className="font-bold tracking-wider text-xs cursor-pointer transition-colors flex items-center gap-1.5 px-2 py-0.5 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200"
           >
             {fieldOptions.find((f) => f.id === field)?.label || "All Problems"}
-            <span className={`inline-block transition-transform duration-200 ${showFieldMenu ? "rotate-180" : ""}`}>▼</span>
+            <span
+              className={`inline-block transition-transform duration-200 ${showFieldMenu ? "rotate-180" : ""}`}
+            >
+              ▼
+            </span>
           </button>
           {showFieldMenu && (
             <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg z-20 min-w-[140px]">
               {fieldOptions.map((f) => (
                 <button
                   key={f.id}
-                  onClick={() => { setField(f.id); setShowFieldMenu(false); }}
+                  onClick={() => {
+                    setField(f.id);
+                    setShowFieldMenu(false);
+                  }}
                   className={`block w-full text-left text-xs px-3 py-1.5 cursor-pointer hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors ${field === f.id ? "font-bold text-blue-600 dark:text-blue-400" : "text-gray-700 dark:text-gray-300"}`}
                 >
                   {f.label}
@@ -120,15 +138,20 @@ export function PainPointGrid() {
           )}
         </div>
         <span className="flex items-center gap-2 text-[9px]">
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-red-500" />critical</span>
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />warning</span>
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            critical
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            warning
+          </span>
         </span>
       </div>
 
       <div
         className={`font-mono text-xs leading-loose overflow-x-auto flex-1 text-left ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
-          maxHeight: "380px",
           overflowY: "auto",
           maskImage:
             "linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 8px), transparent 100%)",
@@ -136,13 +159,17 @@ export function PainPointGrid() {
             "linear-gradient(to bottom, transparent 0%, black 10px, black calc(100% - 8px), transparent 100%)",
         }}
       >
-        <div className="pr-4 pt-4">
-          <div className="pb-2">
+        <div className="pr-4 pt-4 pb-2 min-h-auto">
           {filtered.map((g, gi) => {
             const isLast = gi === filtered.length - 1;
             return (
-              <div key={g.id} className="border-b-2 border-gray-300 dark:border-gray-600">
-                <div className={`flex ${groupSelectionCount(g) > 0 ? "bg-white dark:bg-gray-800" : ""}`}>
+              <div
+                key={g.id}
+                className="border-b-2 border-gray-300 dark:border-gray-600"
+              >
+                <div
+                  className={`flex ${groupSelectionCount(g) > 0 ? "bg-white dark:bg-gray-800" : ""}`}
+                >
                   <div
                     className="flex flex-col items-center"
                     style={{ width: "1.2rem" }}
@@ -156,7 +183,7 @@ export function PainPointGrid() {
                   <div className="flex-1 min-w-0 flex">
                     <button
                       onClick={() => toggleGroupSelect(g)}
-                       className="flex-1 flex items-start justify-start gap-2 px-2 py-2 cursor-pointer transition-colors hover:bg-blue-100 dark:hover:bg-blue-950"
+                      className="flex-1 flex items-start justify-start gap-2 px-2 py-2 cursor-pointer transition-colors hover:bg-blue-100 dark:hover:bg-blue-950"
                     >
                       <span
                         className={`shrink-0 w-3.5 h-3.5 flex items-center justify-center border text-[8px] font-bold ${groupSelectionCount(g) > 0 ? "bg-blue-500 border-blue-500 text-white" : "border-gray-400 dark:border-gray-500 text-transparent"}`}
@@ -166,7 +193,11 @@ export function PainPointGrid() {
                       <span
                         className={`text-xs text-left font-bold tracking-wider ${groupSelectionCount(g) > 0 ? "text-gray-900 dark:text-white" : dark ? "text-gray-400" : "text-gray-500"}`}
                       >
-                        <span className={`text-[9px] tracking-wider uppercase block ${groupSelectionCount(g) > 0 ? "text-gray-900 dark:text-white" : "text-blue-600 dark:text-blue-400"}`}>{g.id}</span>
+                        <span
+                          className={`text-[9px] tracking-wider uppercase block ${groupSelectionCount(g) > 0 ? "text-gray-900 dark:text-white" : "text-blue-600 dark:text-blue-400"}`}
+                        >
+                          {g.id}
+                        </span>
                         {g.label}
                       </span>
                     </button>
@@ -185,7 +216,13 @@ export function PainPointGrid() {
                 </div>
 
                 {expanded.has(g.id) && (
-                  <div className={groupSelectionCount(g) > 0 ? "bg-white dark:bg-gray-800" : ""}>
+                  <div
+                    className={
+                      groupSelectionCount(g) > 0
+                        ? "bg-white dark:bg-gray-800"
+                        : ""
+                    }
+                  >
                     <div
                       className="px-1 pb-1"
                       style={{ paddingLeft: "1.2rem" }}
@@ -201,7 +238,10 @@ export function PainPointGrid() {
                       const isSel = selected.has(child.id);
                       const isTechOpen = techOpen.has(child.id);
                       return (
-                        <div key={child.id} className="border-b border-gray-200 dark:border-gray-700">
+                        <div
+                          key={child.id}
+                          className="border-b border-gray-200 dark:border-gray-700"
+                        >
                           <div
                             className={`flex items-start w-full ${isSel ? "bg-white dark:bg-gray-800" : ""}`}
                             style={{ paddingLeft: "1.2rem" }}
@@ -225,14 +265,14 @@ export function PainPointGrid() {
                                 }`}
                               />
                             )}
-                              <div className="flex flex-col py-1.5 min-w-0">
-                              <span
-                                className="text-xs sm:text-sm font-bold tracking-wider text-blue-600 dark:text-blue-400"
-                              >
+                            <div className="flex flex-col py-1.5 min-w-0">
+                              <span className="text-xs sm:text-sm font-bold tracking-wider text-blue-600 dark:text-blue-400">
                                 {child.label}
                               </span>
                               {painLabelsTech[child.id] && (
-                                <span className={`text-[10px] leading-tight ${dark ? "text-gray-300" : "text-gray-600"}`}>
+                                <span
+                                  className={`text-[10px] leading-tight ${dark ? "text-gray-300" : "text-gray-600"}`}
+                                >
                                   {painLabelsTech[child.id]}
                                 </span>
                               )}
@@ -275,7 +315,6 @@ export function PainPointGrid() {
             );
           })}
         </div>
-      </div>
       </div>
 
       <div className="text-center mt-auto pt-4">
