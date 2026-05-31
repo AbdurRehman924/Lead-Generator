@@ -246,7 +246,7 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
       {
         id: "broken_test_block",
-        label: "Can your team catch a mistake before it reaches your users — or does it slip through?",
+        label: "Can a mistake be caught before it reaches your users — or does it slip through?",
         options: [
           { label: "Yes — automated checks catch everything", value: "blocked", score: 5 },
           { label: "Sometimes — manual review catches most", value: "manual_stop", score: 3 },
@@ -286,7 +286,7 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
       {
         id: "bus_factor",
-        label: "If the person who knows the system best left tomorrow, would you be stuck?",
+        label: "How much of your deployment process depends on undocumented knowledge?",
         options: [
           { label: "No — everything is documented and shared", value: "shared", score: 5 },
           { label: "Mostly — others could figure it out", value: "mostly", score: 3 },
@@ -296,7 +296,7 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
       {
         id: "manual_steps",
-        label: "How many people and steps are needed just to push a simple change live?",
+        label: "How many steps does it take just to push a simple change live?",
         options: [
           { label: "One person, few clicks — fully automated", value: "zero", score: 5 },
           { label: "One or two people, a few steps", value: "low", score: 3 },
