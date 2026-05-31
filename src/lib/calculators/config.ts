@@ -21,7 +21,7 @@ export interface CalculatorConfig {
 export const calculators: Record<string, CalculatorConfig> = {
   cloud: {
     id: "cloud",
-    name: "Cloud Mathematician",
+    name: "Cloud Audit",
     tagline: "Your cloud bill is probably higher than it should be. Let's find where.",
     description: "8 questions to find where your cloud spend is quietly leaking, your security has gaps you haven't noticed, and your infrastructure is one outage away from costing you users.",
     categories: [
@@ -117,7 +117,7 @@ export const calculators: Record<string, CalculatorConfig> = {
 
   fullstack: {
     id: "fullstack",
-    name: "FullStack Alchemist",
+    name: "Fullstack Audit",
     tagline: "The software you paid for — is it actually earning its keep?",
     description: "You invested in software to grow your business. Is it actually delivering — or is it costing you more in frustration, lost users, and wasted time than it's worth? 8 questions to find out.",
     categories: [
@@ -213,7 +213,7 @@ export const calculators: Record<string, CalculatorConfig> = {
 
   pipeline: {
     id: "pipeline",
-    name: "Pipeline Plumber",
+    name: "Software Delivery Audit",
     tagline: "Every change that takes too long or breaks something costs you money.",
     description: "Every time a change takes too long or breaks something, it costs you money and trust. 8 questions to find the bottlenecks slowing your business down.",
     categories: [
