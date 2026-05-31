@@ -9,7 +9,7 @@ export default function AssessPage() {
           Benchmark your intuition.
         </h1>
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-8">
-          Pick what you want evaluated. Answer 8 quick questions. Get an honest scorecard.
+          Built from 5+ years of industry experience and shipping software — every question is there for a reason.
         </p>
 
         <div className="grid gap-4">
