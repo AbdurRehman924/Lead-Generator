@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { siteConfig } from "@/lib/metadata";
 import { Nav } from "@/components/Nav";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans overflow-x-hidden">
         <Nav />
         <div className="flex flex-col flex-1">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
