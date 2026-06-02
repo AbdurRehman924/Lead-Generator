@@ -95,7 +95,7 @@ export function PainPointGrid() {
     group.children.filter((c) => selected.has(c.id)).length;
 
   return (
-    <div className="bg-white/70 dark:bg-gray-950/70 border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] h-full flex flex-col">
+    <div className="bg-white/70 dark:bg-gray-950/70 border border-gray-200 dark:border-gray-800 p-3 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] h-full flex flex-col">
       {/* Filter bar — outside scrollable area */}
       <div className="flex items-start justify-between gap-x-2 px-2 py-1 mb-3 border-b border-gray-200 dark:border-gray-700 flex-wrap">
         <div className="relative mb-2" ref={menuRef}>
@@ -140,7 +140,7 @@ export function PainPointGrid() {
       </div>
 
       <div
-        className={`font-mono text-xs leading-loose overflow-x-auto flex-1 text-left ${dark ? "bg-gray-900" : "bg-gray-100"}`}
+        className={`font-mono text-xs leading-loose overflow-x-auto flex-1 text-left max-h-[380px] ${dark ? "bg-gray-900" : "bg-gray-100"}`}
         style={{
           overflowY: "auto",
           maskImage:

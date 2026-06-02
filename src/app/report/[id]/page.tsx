@@ -65,11 +65,11 @@ function ReportContent() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
+          <div className="border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] flex flex-col">
             <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-3">
               Here&apos;s what happens next
             </h2>
-            <ol className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 space-y-2 list-decimal list-inside">
+            <ol className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mb-4 space-y-2 list-decimal list-inside flex-1">
               <li>You email me the summary above at <a href={`mailto:${siteConfig.email}`} className="text-blue-600 underline font-semibold">{siteConfig.email}</a></li>
               <li>I review it within 24 hours</li>
               <li>I send back 3 specific fixes — ranked by impact</li>
@@ -78,7 +78,7 @@ function ReportContent() {
 
             <a
               href={`mailto:${siteConfig.email}?subject=${encodeURIComponent(`Infrastructure Analysis — ${config.name} (${result.grade})`)}&body=${encodeURIComponent(summaryText)}`}
-              className="inline-block text-xs tracking-wider uppercase px-4 py-2 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8] cursor-pointer"
+              className="inline-block text-xs tracking-wider uppercase px-4 py-2 bg-blue-600 text-white pixel-btn shadow-[3px_3px_0px_#1d4ed8] hover:shadow-[5px_5px_0px_#1d4ed8] cursor-pointer self-start"
             >
               Email Me This →
             </a>
