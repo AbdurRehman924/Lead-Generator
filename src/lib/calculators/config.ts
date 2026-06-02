@@ -306,4 +306,99 @@ export const calculators: Record<string, CalculatorConfig> = {
       },
     ],
   },
+
+  growth: {
+    id: "growth",
+    name: "Growth Capacity Scan",
+    tagline: "Your business is growing. Is your tech going to keep up — or choke your revenue?",
+    description: "Growing businesses outgrow their software faster than they expect. 8 questions to find out if your tech will scale with you — or quietly hold you back.",
+    categories: [
+      { id: "scaling", label: "Scaling Readiness" },
+      { id: "performance", label: "Performance" },
+      { id: "reliability", label: "Reliability" },
+      { id: "agility", label: "Agility" },
+    ],
+    questions: [
+      {
+        id: "traffic_handling",
+        label: "When you get an unexpected surge of users, does your software handle it — or does it slow down or crash?",
+        options: [
+          { label: "Handles it without breaking a sweat", value: "handles", score: 5 },
+          { label: "Minor slowdowns, but stays up", value: "minor", score: 3 },
+          { label: "It's crashed on us before", value: "crashed", score: 0 },
+          { label: "I have no idea how it'd handle a surge", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "ship_speed",
+        label: "If you needed to beat a competitor to market with a new feature, how fast could you ship it?",
+        options: [
+          { label: "Weeks — we move fast", value: "weeks", score: 5 },
+          { label: "A month or two", value: "months", score: 3 },
+          { label: "3-6 months — it's a slog", value: "slog", score: 0 },
+          { label: "I don't know — it depends on too many things", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "team_focus",
+        label: "How much of your team's energy goes to building new things vs. just keeping the lights on?",
+        options: [
+          { label: "Mostly building — we're ahead", value: "building", score: 5 },
+          { label: "About even — half and half", value: "even", score: 3 },
+          { label: "Mostly firefighting — barely keeping up", value: "firefighting", score: 0 },
+          { label: "I don't actually track how our time is spent", value: "dont_track", score: -1 },
+        ],
+      },
+      {
+        id: "change_friction",
+        label: "When's the last time an update or change broke something that actually cost you money?",
+        options: [
+          { label: "Never — changes are smooth and tested", value: "never", score: 5 },
+          { label: "Months ago — rare but it happens", value: "months", score: 3 },
+          { label: "This month — it's a recurring problem", value: "recent", score: 0 },
+          { label: "This week — every change feels like a gamble", value: "always", score: -1 },
+        ],
+      },
+      {
+        id: "scale_limit",
+        label: "Could your current setup handle 2x, 5x, or 10x your current users without a major rebuild?",
+        options: [
+          { label: "Yes — we're built to scale", value: "yes", score: 5 },
+          { label: "2x yes, beyond that we'd need work", value: "partial", score: 3 },
+          { label: "Probably not — we're near our limit", value: "no", score: 0 },
+          { label: "I have no idea what our ceiling is", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "outage_confidence",
+        label: "If a server failed or traffic spiked right now, would your software keep running — or would you lose money?",
+        options: [
+          { label: "Yes — fully redundant, tested regularly", value: "redundant", score: 5 },
+          { label: "Mostly — some gaps but we'd manage", value: "mostly", score: 3 },
+          { label: "I hope so, but I'm not confident", value: "unsure", score: 0 },
+          { label: "It would probably go down — and that scares me", value: "would_fail", score: -1 },
+        ],
+      },
+      {
+        id: "codebase_complexity",
+        label: "If a new developer joined today, how long before they'd be shipping meaningful changes?",
+        options: [
+          { label: "Days — well documented, clear codebase", value: "days", score: 5 },
+          { label: "A week or two — they'd ramp up fast", value: "weeks", score: 3 },
+          { label: "A month or more — it's complex", value: "months", score: 0 },
+          { label: "I don't know — and that probably says enough", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "performance_visibility",
+        label: "Do you actually know how your software is performing right now — speed, errors, uptime — without someone telling you something's wrong?",
+        options: [
+          { label: "Yes — real-time dashboard, full visibility", value: "full", score: 5 },
+          { label: "I check manually when I think about it", value: "manual", score: 3 },
+          { label: "Only when users complain", value: "reactive", score: 0 },
+          { label: "No visibility at all — it's a black box", value: "none", score: -1 },
+        ],
+      },
+    ],
+  },
 };
