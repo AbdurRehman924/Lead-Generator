@@ -19,20 +19,24 @@ const fieldGroups: Record<string, string[]> = {
     "planning",
     "growth",
     "team",
+    "crm",
   ],
   devops: ["monitoring", "deploying", "shipping", "ops"],
   cloud: ["monitoring", "security", "ops"],
   security: ["security"],
+  crm: ["crm", "growth", "planning", "team"],
+  growth: ["growth", "crm"],
 };
 
 const fieldOptions = [
   { id: "all", label: "All Problems" },
+  { id: "crm", label: "CRM" },
+  { id: "cloud", label: "Cloud" },
+  { id: "fullstack", label: "FullStack" },
   { id: "frontend", label: "Frontend" },
   { id: "backend", label: "Backend" },
-  { id: "fullstack", label: "FullStack" },
   { id: "devops", label: "DevOps" },
-  { id: "cloud", label: "Cloud" },
-  { id: "security", label: "Security" },
+  { id: "growth", label: "Growth" },
 ];
 
 export function PainPointGrid() {

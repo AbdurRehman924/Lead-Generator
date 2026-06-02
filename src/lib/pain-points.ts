@@ -14,23 +14,26 @@ export interface PainGroup {
 
 export const groupsBusiness: PainGroup[] = [
   {
-    id: "monitoring",
-    label: "Your users shouldn't have to tell you something's broken",
-    description: "Every minute you don't know, someone else is already complaining",
+    id: "crm",
+    label: "Your CRM should close deals — not collect dust",
+    description: "Leads don't convert themselves, and spreadsheets aren't a sales system",
     children: [
-      { id: "monitor", label: "Downtime went unnoticed for hours — no alert caught it", severity: "critical", tech: "Prometheus, Grafana" },
-      { id: "incident", label: "When things break, there's no playbook to follow", severity: "critical", tech: "Runbooks, Statuspage" },
-      { id: "alert", label: "Alerts either fire constantly or not at all — both are useless", severity: "warning", tech: "PagerDuty, Opsgenie" },
+      { id: "lead_loss", label: "Leads are falling through the cracks — no follow-up system in place", severity: "critical", tech: "CRM, HubSpot, Salesforce" },
+      { id: "crm_data", label: "CRM data is full of duplicates and outdated contacts — nobody trusts it", severity: "critical", tech: "Data Cleaning, Dedup" },
+      { id: "crm_manual", label: "Sales team spends more time entering data than selling", severity: "critical", tech: "Automation, AI" },
+      { id: "crm_pipeline", label: "Nobody can see where deals actually are in the pipeline", severity: "warning", tech: "Pipeline Mgmt, CRM Reports" },
+      { id: "crm_followup", label: "No automated follow-ups — leads go cold after initial contact", severity: "warning", tech: "Email Automation, Sequences" },
+      { id: "crm_roi", label: "Can't measure which marketing channels actually produce revenue", severity: "warning", tech: "Attribution, Analytics" },
     ],
   },
   {
-    id: "deploying",
-    label: "New updates shouldn't make you nervous",
-    description: "A release shouldn't require a war room and a prayer",
+    id: "performance",
+    label: "Every second of slowness is a customer who might leave",
+    description: "Slowness you can't explain is revenue you can't see leaving",
     children: [
-      { id: "deploy", label: "Deployments are risky — one wrong change can cause an outage", severity: "critical", tech: "ECS, K8s, CloudFormation" },
-      { id: "rollback", label: "The last bad release took 3 hours to undo — while users were affected", severity: "critical", tech: "Blue/Green, Canary" },
-      { id: "verify", label: "After deploying, there's no way to confirm it actually works", severity: "warning", tech: "Datadog, Sentry, PagerDuty" },
+      { id: "slow", label: "The app slows down under load — no performance profiling in place", severity: "critical", tech: "k6, Datadog, Lighthouse" },
+      { id: "local", label: "Works perfectly locally — breaks in production every time", severity: "critical", tech: "Docker, Env Config" },
+      { id: "cascade", label: "One slow third-party API call takes down the whole app", severity: "warning", tech: "Circuit Breakers, Timeouts" },
     ],
   },
   {
@@ -55,6 +58,26 @@ export const groupsBusiness: PainGroup[] = [
     ],
   },
   {
+    id: "deploying",
+    label: "New updates shouldn't make you nervous",
+    description: "A release shouldn't require a war room and a prayer",
+    children: [
+      { id: "deploy", label: "Deployments are risky — one wrong change can cause an outage", severity: "critical", tech: "ECS, K8s, CloudFormation" },
+      { id: "rollback", label: "The last bad release took 3 hours to undo — while users were affected", severity: "critical", tech: "Blue/Green, Canary" },
+      { id: "verify", label: "After deploying, there's no way to confirm it actually works", severity: "warning", tech: "Datadog, Sentry, PagerDuty" },
+    ],
+  },
+  {
+    id: "monitoring",
+    label: "Your users shouldn't have to tell you something's broken",
+    description: "Every minute you don't know, someone else is already complaining",
+    children: [
+      { id: "monitor", label: "Downtime went unnoticed for hours — no alert caught it", severity: "critical", tech: "Prometheus, Grafana" },
+      { id: "incident", label: "When things break, there's no playbook to follow", severity: "critical", tech: "Runbooks, Statuspage" },
+      { id: "alert", label: "Alerts either fire constantly or not at all — both are useless", severity: "warning", tech: "PagerDuty, Opsgenie" },
+    ],
+  },
+  {
     id: "building",
     label: "Bugs that reach your users are bugs you're paying for twice",
     description: "If users find it first, you've already lost their trust",
@@ -65,13 +88,13 @@ export const groupsBusiness: PainGroup[] = [
     ],
   },
   {
-    id: "performance",
-    label: "Every second of slowness is a customer who might leave",
-    description: "Slowness you can't explain is revenue you can't see leaving",
+    id: "ops",
+    label: "You're probably paying too much for cloud — and too little for backup",
+    description: "One bad day shouldn't erase everything you've built",
     children: [
-      { id: "slow", label: "The app slows down under load — no performance profiling in place", severity: "critical", tech: "k6, Datadog, Lighthouse" },
-      { id: "local", label: "Works perfectly locally — breaks in production every time", severity: "critical", tech: "Docker, Env Config" },
-      { id: "cascade", label: "One slow third-party API call takes down the whole app", severity: "warning", tech: "Circuit Breakers, Timeouts" },
+      { id: "backup", label: "The database has no tested backup — data is at risk", severity: "critical", tech: "Velero, RDS Snapshot" },
+      { id: "cost", label: "Cloud costs jumped 40% — nobody can explain where it went", severity: "critical", tech: "AWS Budgets, Infracost" },
+      { id: "infra", label: "Infrastructure exists only in someone's memory — nothing is documented", severity: "warning", tech: "Terraform, Pulumi" },
     ],
   },
   {
@@ -82,16 +105,6 @@ export const groupsBusiness: PainGroup[] = [
       { id: "code", label: "The codebase depends on one person — a single point of failure", severity: "critical", tech: "Git, GitHub, VS Code" },
       { id: "review", label: "Code gets merged without proper review — no enforced process", severity: "warning", tech: "PRs, CodeRabbit" },
       { id: "debt", label: "Tech debt is so bad that new features break old ones constantly", severity: "warning", tech: "SonarQube, Refactoring" },
-    ],
-  },
-  {
-    id: "ops",
-    label: "You're probably paying too much for cloud — and too little for backup",
-    description: "One bad day shouldn't erase everything you've built",
-    children: [
-      { id: "backup", label: "The database has no tested backup — data is at risk", severity: "critical", tech: "Velero, RDS Snapshot" },
-      { id: "cost", label: "Cloud costs jumped 40% — nobody can explain where it went", severity: "critical", tech: "AWS Budgets, Infracost" },
-      { id: "infra", label: "Infrastructure exists only in someone's memory — nothing is documented", severity: "warning", tech: "Terraform, Pulumi" },
     ],
   },
   {
@@ -154,6 +167,12 @@ export const painLabelsBusiness: Record<string, string> = {
   design: "No design system — every screen looks inconsistent",
   seo: "Nobody can find us on Google",
   analytics: "No user behavior tracking — decisions are made blind",
+  lead_loss: "Leads are falling through the cracks — no follow-up system in place",
+  crm_data: "CRM data is full of duplicates and outdated contacts — nobody trusts it",
+  crm_manual: "Sales team spends more time entering data than selling",
+  crm_pipeline: "Nobody can see where deals actually are in the pipeline",
+  crm_followup: "No automated follow-ups — leads go cold after initial contact",
+  crm_roi: "Can't measure which marketing channels actually produce revenue",
 };
 
 export const painLabelsTech: Record<string, string> = {
@@ -190,6 +209,12 @@ export const painLabelsTech: Record<string, string> = {
   design: "No design system or consistent UI/UX patterns",
   seo: "Poor search rankings — no structured data or SSR",
   analytics: "No user behavior tracking or event analytics",
+  lead_loss: "No structured lead follow-up — leads go cold",
+  crm_data: "CRM data is cluttered with duplicates and stale records",
+  crm_manual: "Sales team spends significant time on manual data entry",
+  crm_pipeline: "No pipeline visibility — deal stages are unclear",
+  crm_followup: "No automated email sequences for lead nurturing",
+  crm_roi: "No marketing attribution — can't track channel ROI",
 };
 
 export const parentLabelsBusiness: Record<string, string> = {
@@ -226,4 +251,10 @@ export const parentLabelsBusiness: Record<string, string> = {
   design: "Too many ideas, too few shipped — sound familiar?",
   seo: "If Google can't find you, neither can your users",
   analytics: "If Google can't find you, neither can your users",
+  lead_loss: "Your CRM should close deals — not collect dust",
+  crm_data: "Your CRM should close deals — not collect dust",
+  crm_manual: "Your CRM should close deals — not collect dust",
+  crm_pipeline: "Your CRM should close deals — not collect dust",
+  crm_followup: "Your CRM should close deals — not collect dust",
+  crm_roi: "Your CRM should close deals — not collect dust",
 };
