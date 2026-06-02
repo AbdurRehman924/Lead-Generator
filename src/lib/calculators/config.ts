@@ -211,6 +211,291 @@ export const calculators: Record<string, CalculatorConfig> = {
     ],
   },
 
+  frontend: {
+    id: "frontend",
+    name: "Frontend Health Check",
+    tagline: "Is your frontend costing you users? Slow pages and broken UI drive people away before they even see what you offer.",
+    description: "8 questions to find out if your frontend is fast, reliable, and converting visitors — or quietly bleeding your audience.",
+    categories: [
+      { id: "performance", label: "Performance" },
+      { id: "ux", label: "User Experience" },
+      { id: "quality", label: "Code Quality" },
+      { id: "infrastructure", label: "Infrastructure" },
+    ],
+    questions: [
+      {
+        id: "load_time",
+        label: "How fast does your main page actually load on a mobile browser — not your office Wi-Fi?",
+        options: [
+          { label: "Under 2 seconds — feels instant", value: "fast", score: 5 },
+          { label: "2-4 seconds — acceptable", value: "ok", score: 3 },
+          { label: "5+ seconds — people are waiting", value: "slow", score: 0 },
+          { label: "I haven't actually tested it", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "ui_consistency",
+        label: "Does your UI behave consistently across browsers and devices — or does it break on some screens?",
+        options: [
+          { label: "Consistent everywhere — tested regularly", value: "consistent", score: 5 },
+          { label: "Mostly — some edge cases", value: "mostly", score: 3 },
+          { label: "It breaks on certain devices regularly", value: "broken", score: 0 },
+          { label: "I don't test across devices", value: "dont_test", score: -1 },
+        ],
+      },
+      {
+        id: "accessibility",
+        label: "Can someone with impaired vision or motor disabilities actually use your site?",
+        options: [
+          { label: "Yes — we follow WCAG standards", value: "compliant", score: 5 },
+          { label: "Partially — we've done basic checks", value: "partial", score: 3 },
+          { label: "Probably not — never checked", value: "no", score: 0 },
+          { label: "I don't know what WCAG is", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "build_deploy",
+        label: "When you make a frontend change, how long from commit to users seeing it live?",
+        options: [
+          { label: "Minutes — automated deploy", value: "minutes", score: 5 },
+          { label: "Hours — semi-automated", value: "hours", score: 3 },
+          { label: "Days — manual process", value: "days", score: 0 },
+          { label: "I don't track it — it varies", value: "dont_track", score: -1 },
+        ],
+      },
+      {
+        id: "error_monitoring",
+        label: "Do you know immediately when your site breaks for a user — or do you find out when they complain?",
+        options: [
+          { label: "Real-time error alerts", value: "real_time", score: 5 },
+          { label: "We check logs manually", value: "manual", score: 3 },
+          { label: "Users tell us — eventually", value: "reactive", score: 0 },
+          { label: "No monitoring at all", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "third_party_deps",
+        label: "How many third-party scripts (analytics, ads, tracking) load on your site — and do you know what they cost in performance?",
+        options: [
+          { label: "Fewer than 5 — we audit regularly", value: "lean", score: 5 },
+          { label: "5-10 — we know what they do", value: "moderate", score: 3 },
+          { label: "10+ — they pile up over time", value: "heavy", score: 0 },
+          { label: "I have no idea what's loading", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "responsive_quality",
+        label: "Does your site work properly on mobile — or do you lose users because text is tiny and buttons don't tap?",
+        options: [
+          { label: "Full responsive — works on any screen", value: "responsive", score: 5 },
+          { label: "Mostly — some pages have issues", value: "mostly", score: 3 },
+          { label: "It's desktop-only, mobile is broken", value: "broken", score: 0 },
+          { label: "I don't check mobile experience", value: "dont_check", score: -1 },
+        ],
+      },
+      {
+        id: "dev_velocity",
+        label: "Can your team ship a new page or feature in days — or does every change take weeks of coordination?",
+        options: [
+          { label: "Days — components are reusable", value: "fast", score: 5 },
+          { label: "A week or two — some friction", value: "moderate", score: 3 },
+          { label: "Weeks — everything is custom", value: "slow", score: 0 },
+          { label: "I don't know how long changes take", value: "dont_know", score: -1 },
+        ],
+      },
+    ],
+  },
+
+  backend: {
+    id: "backend",
+    name: "Backend Resilience Audit",
+    tagline: "Your frontend looks great — but is the backend a house of cards? One bad API response can take down the whole experience.",
+    description: "8 questions to find out if your backend is reliable, secure, and built to scale — or one bad deploy away from a crisis.",
+    categories: [
+      { id: "api", label: "API Design" },
+      { id: "data", label: "Data Management" },
+      { id: "security", label: "Security" },
+      { id: "scalability", label: "Scalability" },
+    ],
+    questions: [
+      {
+        id: "api_reliability",
+        label: "When your frontend calls an API, how often does it fail — and do you know why?",
+        options: [
+          { label: "Rarely — we monitor error rates", value: "monitored", score: 5 },
+          { label: "Occasionally — we fix as they come", value: "occasional", score: 3 },
+          { label: "Regularly — it's a known problem", value: "frequent", score: 0 },
+          { label: "I don't track API errors", value: "dont_track", score: -1 },
+        ],
+      },
+      {
+        id: "db_performance",
+        label: "As your data grows, are your queries staying fast — or are pages starting to crawl?",
+        options: [
+          { label: "Fast — we monitor and optimise", value: "optimised", score: 5 },
+          { label: "Still OK — slow queries exist but manageable", value: "manageable", score: 3 },
+          { label: "Getting slow — no one's optimised yet", value: "degrading", score: 0 },
+          { label: "I don't know how our DB is performing", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "data_security",
+        label: "If your customer data was leaked today, would you know what was exposed — and how fast?",
+        options: [
+          { label: "Yes — encryption + audit logs + alerts", value: "secure", score: 5 },
+          { label: "Mostly — we'd piece it together", value: "mostly", score: 3 },
+          { label: "Not really — it would be a scramble", value: "scramble", score: 0 },
+          { label: "I don't know what data we store or where", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "error_handling",
+        label: "When something goes wrong on the server, does the system tell you — or does the user just see a blank screen?",
+        options: [
+          { label: "Alerts + logs — we know instantly", value: "alerted", score: 5 },
+          { label: "We check logs when something feels off", value: "reactive", score: 3 },
+          { label: "Users report it — if they bother", value: "user", score: 0 },
+          { label: "No error tracking at all", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "scaling_plan",
+        label: "If your traffic doubled overnight, would your backend handle it — or would you be scrambling?",
+        options: [
+          { label: "Handles it — auto-scaling in place", value: "auto", score: 5 },
+          { label: "Probably — we have some headroom", value: "headroom", score: 3 },
+          { label: "No — we'd need to urgently upgrade", value: "would_fail", score: 0 },
+          { label: "I don't know what our limits are", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "api_docs",
+        label: "If a new developer (or AI) needed to integrate with your backend, could they figure it out without asking anyone?",
+        options: [
+          { label: "Yes — documented and versioned", value: "documented", score: 5 },
+          { label: "Some docs — incomplete but useful", value: "partial", score: 3 },
+          { label: "No docs — tribal knowledge only", value: "tribal", score: 0 },
+          { label: "I don't have an API — it's all coupled", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "dependency_risk",
+        label: "How many of your backend services or libraries are outdated or no longer maintained?",
+        options: [
+          { label: "None — we update regularly", value: "updated", score: 5 },
+          { label: "A few — we know about them", value: "aware", score: 3 },
+          { label: "Several — updating feels risky", value: "outdated", score: 0 },
+          { label: "I have no inventory of dependencies", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "incident_response",
+        label: "When the backend goes down, how fast can you get it back — and do you know why it happened?",
+        options: [
+          { label: "Minutes — runbook + rollback ready", value: "fast", score: 5 },
+          { label: "Within an hour — we figure it out", value: "hour", score: 3 },
+          { label: "Half a day or more — it's chaotic", value: "slow", score: 0 },
+          { label: "We've never stress-tested recovery", value: "never", score: -1 },
+        ],
+      },
+    ],
+  },
+
+  crm: {
+    id: "crm",
+    name: "CRM Health Score",
+    tagline: "Your CRM should be your best salesperson. Is it actually helping you close deals — or is it just an expensive address book?",
+    description: "8 questions to find out if your CRM is driving revenue — or if leads are falling through the cracks without you noticing.",
+    categories: [
+      { id: "lead_mgmt", label: "Lead Management" },
+      { id: "pipeline", label: "Sales Pipeline" },
+      { id: "data_quality", label: "Data Quality" },
+      { id: "automation", label: "Automation" },
+    ],
+    questions: [
+      {
+        id: "lead_capture",
+        label: "When a new lead comes in, is it captured automatically — or does someone have to manually enter it?",
+        options: [
+          { label: "Automatic — forms feed directly in", value: "auto", score: 5 },
+          { label: "Semi-automatic — email forwards to CRM", value: "semi", score: 3 },
+          { label: "Manual entry — someone types it in", value: "manual", score: 0 },
+          { label: "Leads come through email and spreadsheets", value: "ad_hoc", score: -1 },
+        ],
+      },
+      {
+        id: "follow_up",
+        label: "How quickly does your team follow up on a new lead — and do you track whether they actually do?",
+        options: [
+          { label: "Within minutes — automated assignment", value: "instant", score: 5 },
+          { label: "Within hours — team checks regularly", value: "hours", score: 3 },
+          { label: "Within days — if someone remembers", value: "days", score: 0 },
+          { label: "I don't track follow-up at all", value: "dont_track", score: -1 },
+        ],
+      },
+      {
+        id: "data_hygiene",
+        label: "Is your CRM data clean and up-to-date — or do you have duplicates, outdated contacts, and bad numbers?",
+        options: [
+          { label: "Clean — dedup rules + regular audits", value: "clean", score: 5 },
+          { label: "Decent — occasional cleanup by hand", value: "decent", score: 3 },
+          { label: "Messy — duplicates and bad data everywhere", value: "messy", score: 0 },
+          { label: "I don't know what state our data is in", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "pipeline_visibility",
+        label: "Can you see exactly where every deal is in your pipeline — or do you have to ask someone for a status update?",
+        options: [
+          { label: "Full pipeline view — always up to date", value: "visible", score: 5 },
+          { label: "Partial — I can see most of it", value: "partial", score: 3 },
+          { label: "I ask the team — they tell me verbally", value: "verbal", score: 0 },
+          { label: "No pipeline tracking at all", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "automation",
+        label: "How much of your sales process is automated — follow-ups, reminders, task creation, reporting?",
+        options: [
+          { label: "Mostly automated — minimal manual work", value: "mostly", score: 5 },
+          { label: "Some — basic email automation works", value: "some", score: 3 },
+          { label: "Very little — everything is manual", value: "manual", score: 0 },
+          { label: "I don't know what's possible to automate", value: "dont_know", score: -1 },
+        ],
+      },
+      {
+        id: "reporting",
+        label: "Do you know which lead sources, campaigns, or sales activities actually bring in revenue — or are you guessing?",
+        options: [
+          { label: "Yes — source tracking + attribution", value: "tracked", score: 5 },
+          { label: "Partially — we know some sources", value: "partial", score: 3 },
+          { label: "Not really — it's mostly guesses", value: "guessing", score: 0 },
+          { label: "No reporting at all", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "integration",
+        label: "Does your CRM talk to your other tools (email, calendar, invoicing, ads) — or is it isolated?",
+        options: [
+          { label: "Fully integrated — seamless data flow", value: "integrated", score: 5 },
+          { label: "Partially — some tools are connected", value: "partial", score: 3 },
+          { label: "Manual — we copy data between systems", value: "manual", score: 0 },
+          { label: "Not integrated at all — everything separate", value: "none", score: -1 },
+        ],
+      },
+      {
+        id: "adoption",
+        label: "Does your team actually use the CRM every day — or do they work around it because it's clunky?",
+        options: [
+          { label: "Yes — it's their main daily tool", value: "adopted", score: 5 },
+          { label: "Mostly — some prefer spreadsheets", value: "partial", score: 3 },
+          { label: "Barely — it's just a contact list", value: "low", score: 0 },
+          { label: "We bought it but no one uses it", value: "unused", score: -1 },
+        ],
+      },
+    ],
+  },
+
   pipeline: {
     id: "pipeline",
     name: "Software Delivery Audit",
