@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { calculators } from "@/lib/calculators/config";
 import { CalculatorForm } from "@/components/calculators/CalculatorForm";
 
@@ -15,6 +16,7 @@ export default async function CalculatorPage({
     <div className="flex flex-col flex-1 min-h-screen bg-white dark:bg-gray-950">
       <main className="flex-1 max-w-2xl mx-auto w-full px-6 pt-16 pb-16">
         <div className="mb-8">
+          <Link href="/assess" className="text-xs text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors mb-3 inline-block">← Back</Link>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{config.name}</h1>
           <p className="text-sm text-gray-500 dark:text-gray-400">{config.description}</p>
         </div>

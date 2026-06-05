@@ -8,8 +8,14 @@ export default function AssessPage() {
         <h1 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
           Benchmark your intuition. Test your setup
         </h1>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-8">
-          Built from 5+ years of industry experience and shipping software — every question is there for a reason.
+        <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+          Pick the area that feels shakiest — you'll have a scored report in 2 minutes.
+        </p>
+        <p className="text-xs text-gray-400 dark:text-gray-500 mb-8">
+          Not sure which to pick?{" "}
+          <a href="/assess/fullstack" className="text-blue-600 dark:text-blue-400 underline font-semibold">
+            Start with the Fullstack Audit →
+          </a>
         </p>
 
         <div className="grid gap-4">
@@ -17,8 +23,13 @@ export default function AssessPage() {
             <Link
               key={calc.id}
               href={`/assess/${calc.id}`}
-              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
+              className="relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-5 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151] hover:shadow-[5px_5px_0px_#bfdbfe] dark:hover:shadow-[5px_5px_0px_#1e3a5f] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-200"
             >
+              {calc.id === "fullstack" && (
+                <span className="absolute top-3 right-3 text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 bg-blue-600 text-white">
+                  Most Popular
+                </span>
+              )}
               <h2 className="text-sm font-bold text-gray-900 dark:text-white mb-1">{calc.name}</h2>
               <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">{calc.description}</p>
               <div className="flex flex-wrap items-center gap-1">

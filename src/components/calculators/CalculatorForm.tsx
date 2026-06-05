@@ -84,11 +84,19 @@ export function CalculatorForm({ config }: { config: CalculatorConfig }) {
 
   return (
     <div className="border border-gray-200 dark:border-gray-800 p-6 shadow-[3px_3px_0px_#e5e7eb] dark:shadow-[3px_3px_0px_#374151]">
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-[10px] sm:text-xs tracking-wider uppercase text-gray-400">
-          Step {step + 1} of {config.questions.length}
-        </span>
-        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
+      <div className="mb-4">
+        <div className="flex items-center justify-between mb-1.5">
+          <span className="text-[10px] tracking-wider uppercase text-gray-400">
+            Question {step + 1} of {config.questions.length}
+          </span>
+          <span className="text-[10px] text-gray-400">{Math.round(((step + 1) / config.questions.length) * 100)}%</span>
+        </div>
+        <div className="w-full h-1 bg-gray-200 dark:bg-gray-800">
+          <div
+            className="h-1 bg-blue-600 transition-all duration-300"
+            style={{ width: `${((step + 1) / config.questions.length) * 100}%` }}
+          />
+        </div>
       </div>
 
       <AnimatePresence mode="wait" custom={direction}>
