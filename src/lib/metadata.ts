@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "ask.artariq",
-  tagline: "Benchmark your intuition. Test your setup.",
+  tagline: "Find out if your software is costing or earning.",
   description:
-    "Is your software worth what you invested? 8 questions. Pick cloud, fullstack, or pipeline. Let's find out.",
+    "Not sure if your software is worth what you paid? Pick an area — cloud, fullstack, CRM, or pipeline — answer 8 questions, get a scored report, and find out what to fix first. Free, no sign-up.",
   email: "artariq.dev.1@gmail.com",
 };
 

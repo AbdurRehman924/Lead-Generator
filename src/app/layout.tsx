@@ -11,11 +11,15 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: "/favicon.svg",
+  metadataBase: new URL("https://ask.artariq.dev"),
+  alternates: { canonical: "/" },
+  keywords: ["software audit", "cloud cost", "CRM health", "fullstack assessment", "infrastructure scorecard", "Abdur Rehman Tariq"],
   openGraph: {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
     type: "website",
     siteName: siteConfig.name,
+    url: "https://ask.artariq.dev",
   },
   twitter: {
     card: "summary",
