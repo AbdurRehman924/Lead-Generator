@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 import type { CalculatorResult } from "@/lib/calculators/engine";
 
-const gradeConfig: Record<string, { color: string; label: string; summary: string }> = {
-  A: { color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400", label: "Excellent", summary: "Tight ship. Keep it documented." },
-  B: { color: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400", label: "Solid", summary: "Strong. A few edges to sharpen." },
-  C: { color: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400", label: "Fragile", summary: "Cracks showing. Some are costing you." },
-  D: { color: "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400", label: "At Risk", summary: "Fix these before they become incidents." },
-  F: { color: "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400", label: "Critical", summary: "Bleeding money or trust. Act now." },
+const gradeConfig: Record<string, { color: string; label: string; summary: string; plain: string }> = {
+  A: { color: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400", label: "Excellent", summary: "Tight ship. Keep it documented.", plain: "Your setup is solid. Most businesses at this level are spending efficiently and shipping reliably." },
+  B: { color: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400", label: "Solid", summary: "Strong. A few edges to sharpen.", plain: "Good foundation with a few gaps. A targeted fix or two would meaningfully reduce risk and cost." },
+  C: { color: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400", label: "Fragile", summary: "Cracks showing. Some are costing you.", plain: "Visible cracks that are likely costing you money today — through waste, slow delivery, or undetected problems." },
+  D: { color: "bg-orange-100 text-orange-700 dark:bg-orange-900/40 dark:text-orange-400", label: "At Risk", summary: "Fix these before they become incidents.", plain: "Your setup has serious gaps. Left unaddressed, these typically turn into outages, data loss, or runaway costs." },
+  F: { color: "bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400", label: "Critical", summary: "Bleeding money or trust. Act now.", plain: "This is actively costing you — in money, trust, or both. The longer this goes unfixed, the more expensive it gets." },
 };
 
 function blockColor(pct: number): string {
@@ -92,6 +92,8 @@ export function ReportCard({ result }: { result: CalculatorResult }) {
         <div className="mb-1">
           <Blocks pct={result.percentage} size="lg" />
         </div>
+
+        <p className="text-xs text-gray-700 dark:text-gray-300 leading-snug mb-1">{g.plain}</p>
 
         <p className="text-[10px] text-gray-400 dark:text-gray-500">
           {atRiskCount > 0 ? `${atRiskCount} of ${result.categories.length} categories need attention` : "All categories look healthy"} · {result.overallScore}/{result.maxScore}
